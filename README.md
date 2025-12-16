@@ -1,8 +1,8 @@
-# Ligandome Screens (OASIS)
+# Obligate Autocrine Stimulation in Situ (OASIS)
 
 Data processing and analysis for **Multiplexed Pan Soluble Ligandome Screening via OASIS**, including:
 
-- **Fitness screen** (MaGeCK-based analysis and summary tables)
+- **Fitness screen** analysis (MaGeCK-based analysis and summary tables)
 - **Perturb-seq / single-cell** analysis (Scanpy/AnnData workflows)
 
 ## Repository layout
@@ -17,7 +17,7 @@ Data processing and analysis for **Multiplexed Pan Soluble Ligandome Screening v
 
 ## Requirements / environment notes
 
-This repo mixes notebooks and large binary inputs/outputs. To run the **Perturb-seq** notebooks you’ll need:
+Fitness screen notebook can be run via standard imports `numpy`, `pandas`, `scipy`, `matplotlib`, `seaborn`. To run the **Perturb-seq** notebooks you’ll need:
 
 - **Python packages**: `scanpy`/`anndata` (+ typical scientific stack: `numpy`, `pandas`, `scipy`, `matplotlib`, `seaborn`)
 - **External dependency**: psp module from https://github.com/y-doctor/KOLF2.1J_Perturbation_Cell_Atlas
@@ -34,4 +34,4 @@ This repo mixes notebooks and large binary inputs/outputs. To run the **Perturb-
 - Data is provided pre-QC at the link found in the manuscript.  
 
 ## Notes
-- To analyze perturb-seq datasets from scratch we reccomend use of 256GB RAM and 32 CPU cores
+- To analyze perturb-seq datasets from scratch we recommend use of 256GB RAM and 32 CPU cores
