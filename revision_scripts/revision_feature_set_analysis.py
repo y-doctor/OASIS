@@ -266,6 +266,7 @@ def run_panel(
     day: str,
     out_root: Path,
     n_perms: int,
+    use_pca: bool = True,
 ) -> dict:
     panel_dir = out_root / day / panel_name
     panel_dir.mkdir(parents=True, exist_ok=True)
@@ -303,9 +304,17 @@ def run_panel(
     adata_panel = adata_norm[:, detected].copy()
     sc.pp.scale(adata_panel)
 
-    n_comps = min(20, len(detected) - 1, adata_panel.n_obs - 1)
-    sc.pp.pca(adata_panel, n_comps=n_comps, random_state=RANDOM_STATE)
-    sc.pp.neighbors(adata_panel, n_neighbors=15, random_state=RANDOM_STATE)
+    if use_pca:
+        n_comps = min(20, len(detected) - 1, adata_panel.n_obs - 1)
+        sc.pp.pca(adata_panel, n_comps=n_comps, random_state=RANDOM_STATE)
+        sc.pp.neighbors(adata_panel, n_neighbors=15, random_state=RANDOM_STATE)
+    else:
+        sc.pp.neighbors(
+            adata_panel,
+            n_neighbors=15,
+            use_rep="X",
+            random_state=RANDOM_STATE,
+        )
     sc.tl.leiden(
         adata_panel,
         resolution=1.0,
@@ -458,6 +467,11 @@ def parse_args():
         help="Root output dir; per-day/per-panel subdirs created underneath.",
     )
     p.add_argument("--n-permutations", type=int, default=10000)
+    p.add_argument(
+        "--no-pca",
+        action="store_true",
+        help="Build kNN directly on scaled panel genes (skip PCA). Useful for small panels.",
+    )
     return p.parse_args()
 
 
@@ -489,6 +503,7 @@ def main():
             day=args.day,
             out_root=args.output_dir,
             n_perms=args.n_permutations,
+            use_pca=not args.no_pca,
         )
         rows.append(row)
 
