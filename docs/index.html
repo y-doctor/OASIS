@@ -262,14 +262,30 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
   </figure>
 </div>
 
-<h3>Are these clusters biologically distinct?</h3>
+<h3>Which clusters are "interesting" — differential vs NTC?</h3>
 
-<p>Yes — and the dotplot of every union gene against every cluster shows it directly. Each non-iPSC cluster has a single strong lineage-TF marker on top of an otherwise pluripotent gene-expression profile, indicating cells caught at the very earliest stage of lineage commitment driven by a specific ligand perturbation.</p>
+<p>The matrixplot below shows the mean NTC z-score per cluster × gene, with a diverging colormap centered at 0 (= NTC baseline). <strong>Pale cells = NTC-like; bright red squares = the cluster has a specific marker meaningfully above NTC.</strong> Almost every cluster has exactly one bright square — meaning the clustering is partitioning cells by which single lineage TF has been "burst on" by the perturbation that drove them there. This is the cleanest visual answer to the reviewer's question.</p>
 
 <figure>
-  <img src="figures/Day6_panel_dotplot.png" alt="Day 6 dotplot of all union genes per Leiden cluster">
-  <figcaption><strong>Figure 2.</strong> All union genes (columns, grouped by source panel) × Leiden clusters (rows). Dot size = % cells expressing; color = mean log-expression (per-gene scaled). Note that the PL columns (HESX1, DNMT3B, POU5F1, TRIM22, NANOG) are dense across nearly every cluster, while EC/ME/EN/MS markers each define one or two specific clusters — confirming partial-lineage specification on a pluripotent background.</figcaption>
+  <img src="figures/Day6_panel_matrixplot_ntcz.png" alt="Day 6 matrixplot of mean NTC z-score per cluster x gene">
+  <figcaption><strong>Figure 2.</strong> Mean NTC-z-score per (cluster × union gene), Day 6. Diverging cmap centered at 0 (NTC baseline). Each cluster's defining marker is the bright red square in its row. Pluripotency markers (PL panel, left) are pale across almost every cluster — these are still pluripotent cells with a single layered-on lineage TF.</figcaption>
 </figure>
+
+<details>
+  <summary>Same data, dotplot view (size = % cells with z &gt; 1)</summary>
+  <figure>
+    <img src="figures/Day6_panel_dotplot_ntcz.png" alt="Day 6 dotplot NTC-z">
+    <figcaption>Same matrix as above; dot size now also encodes the fraction of cells in each cluster with z-score &gt; 1 for that gene (i.e., meaningfully above NTC).</figcaption>
+  </figure>
+</details>
+
+<details>
+  <summary>Reference: log-normalized (not NTC-normalized) dotplot</summary>
+  <figure>
+    <img src="figures/Day6_panel_dotplot.png" alt="Day 6 dotplot log-normalized">
+    <figcaption>Original dotplot of log-normalized expression with per-gene scaling. PL columns are dense across every cluster (because all cells still express pluripotency markers), which obscures which clusters are truly differentiated. The NTC-z view above is the right tool for that.</figcaption>
+  </figure>
+</details>
 
 <h3>Significant ligand enrichments</h3>
 
@@ -282,6 +298,12 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 <p>For each cluster with at least one FDR-significant hit, the bar shows Δ% = (perturbation cluster proportion − NTC cluster proportion). Blue = enriched, red = depleted. With one ligand per cluster surviving FDR, these read as "one perturbation drives most cells of its kind into one cluster".</p>
 
 <div class="grid" id="d6-bars"></div>
+
+<h3>Per-cluster ligand composition (top enrichments, FDR-aware)</h3>
+
+<p>For every cluster, the top 5 most-enriched ligand perturbations by Δ%, regardless of FDR significance. q-values shown so you can see how close non-significant hits came. Click a cluster to expand.</p>
+
+<div id="d6-composition"></div>
 
 <h2 id="day4">Day 4 results</h2>
 
@@ -311,15 +333,33 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 </div>
 
 <figure>
-  <img src="figures/Day4_panel_dotplot.png" alt="Day 4 dotplot of all union genes per cluster">
-  <figcaption><strong>Figure 4.</strong> Day 4 dotplot. Same lineage-TF-burst pattern as Day 6, but earlier in commitment so several panels are sparser.</figcaption>
+  <img src="figures/Day4_panel_matrixplot_ntcz.png" alt="Day 4 matrixplot NTC-z">
+  <figcaption><strong>Figure 4.</strong> Day 4 mean NTC-z-score per (cluster × gene). Same pattern as Day 6 but earlier — fewer clusters have a strong single-marker signature, consistent with most cells still being uncommitted at this earlier timepoint.</figcaption>
 </figure>
+
+<details>
+  <summary>Day 4 — log-normalized dotplot (reference)</summary>
+  <figure>
+    <img src="figures/Day4_panel_dotplot.png" alt="Day 4 dotplot of all union genes per cluster">
+    <figcaption>Original dotplot of log-normalized expression with per-gene scaling.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day4_panel_dotplot_ntcz.png" alt="Day 4 dotplot NTC-z">
+    <figcaption>Day 4 NTC-z dotplot (size = % cells with z &gt; 1).</figcaption>
+  </figure>
+</details>
 
 <h3>Significant ligand enrichments — Day 4</h3>
 
 <div id="d4-hits-table"></div>
 
 <div class="grid" id="d4-bars"></div>
+
+<h3>Per-cluster ligand composition — Day 4 (top enrichments)</h3>
+
+<p>No Day 4 perturbations pass BH-FDR α=0.05 in any cluster (the 76-cluster fragmentation diluting power across many small partitions). The composition table below shows the top 5 enriched ligands per cluster anyway, ordered by Δ%, with q-values so you can see how close they came.</p>
+
+<div id="d4-composition"></div>
 
 <h2 id="caveats">Caveats and methods notes</h2>
 
@@ -334,6 +374,7 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 
 <ul>
   <li><a href="data/Day6_significant_hits.csv">Day 6 significant_hits.csv</a> · <a href="data/Day4_significant_hits.csv">Day 4 significant_hits.csv</a></li>
+  <li><a href="data/Day6_all_enrichment_stats.csv">Day 6 all_enrichment_stats.csv</a> · <a href="data/Day4_all_enrichment_stats.csv">Day 4 all_enrichment_stats.csv</a> — every perturbation × cluster (Δ%, p-values, q-values)</li>
   <li><a href="data/Day6_summary.csv">Day 6 summary.csv</a> · <a href="data/Day4_summary.csv">Day 4 summary.csv</a></li>
   <li><a href="data/Day6_cluster_sizes.csv">Day 6 cluster sizes</a> · <a href="data/Day4_cluster_sizes.csv">Day 4 cluster sizes</a></li>
   <li><a href="data/Day6_dropped_genes.csv">Day 6 dropped_genes.csv</a> · <a href="data/Day4_dropped_genes.csv">Day 4 dropped_genes.csv</a></li>
@@ -393,6 +434,48 @@ async function buildHitsTable(csvPath, mountId) {
   return rows;
 }
 
+async function buildComposition(csvPath, mountId, topN=5) {
+  const rows = await fetchCsv(csvPath);
+  const mount = document.getElementById(mountId);
+  if (rows.length === 0) {
+    mount.innerHTML = '<p class="meta">No data.</p>';
+    return;
+  }
+  // Group by cluster
+  const byCluster = {};
+  for (const r of rows) {
+    if (!byCluster[r.cluster]) byCluster[r.cluster] = [];
+    byCluster[r.cluster].push(r);
+  }
+  const clusters = Object.keys(byCluster).sort((a,b)=>+a-+b);
+  let html = '';
+  for (const c of clusters) {
+    const clusterRows = byCluster[c]
+      .map(r => ({...r, delta_pct_n: +r.delta_pct, q_enrich_n: +r.q_enrich}))
+      .sort((a,b) => b.delta_pct_n - a.delta_pct_n)
+      .slice(0, topN);
+    const clusterSize = clusterRows[0]?.prop_pert ? null : null; // not directly available
+    const anySig = byCluster[c].some(r => r.direction === 'enriched' || r.direction === 'depleted');
+    const sigBadge = anySig ? ' <span class="pill" style="background:#1982C4;color:white">FDR-sig</span>' : '';
+    html += `<details ${anySig ? 'open' : ''}>
+      <summary>Cluster ${c}${sigBadge} <span class="meta" style="display:inline">— top ${Math.min(topN, clusterRows.length)} enriched</span></summary>
+      <table>
+        <thead><tr><th>Perturbation</th><th>Δ%</th><th>n cells</th><th>q (enrich)</th></tr></thead>
+        <tbody>`;
+    for (const r of clusterRows) {
+      const sig = (r.direction === 'enriched' || r.direction === 'depleted');
+      html += `<tr${sig ? ' style="background:rgba(25,130,196,0.07)"' : ''}>
+        <td><code>${r.perturbation}</code></td>
+        <td class="num">${r.delta_pct_n.toFixed(2)}</td>
+        <td class="num">${r.n_cells}</td>
+        <td class="num">${fmtNum(r.q_enrich_n)}</td>
+      </tr>`;
+    }
+    html += `</tbody></table></details>`;
+  }
+  mount.innerHTML = html;
+}
+
 async function buildBarGrid(rows, day, mountId) {
   const clusters = [...new Set(rows.map(r => r.cluster))].sort((a,b)=>+a-+b);
   const mount = document.getElementById(mountId);
@@ -418,8 +501,10 @@ async function buildSummary(csvPath, clustersId, hitsId) {
   await buildSummary('data/Day4_summary.csv', 'd4-clusters', 'd4-hits');
   const d6 = await buildHitsTable('data/Day6_significant_hits.csv', 'd6-hits-table');
   await buildBarGrid(d6, 'Day6', 'd6-bars');
+  await buildComposition('data/Day6_all_enrichment_stats.csv', 'd6-composition', 5);
   const d4 = await buildHitsTable('data/Day4_significant_hits.csv', 'd4-hits-table');
   await buildBarGrid(d4, 'Day4', 'd4-bars');
+  await buildComposition('data/Day4_all_enrichment_stats.csv', 'd4-composition', 5);
 })();
 </script>
 

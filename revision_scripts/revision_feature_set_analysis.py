@@ -409,9 +409,26 @@ def run(adata, day: str, out_dir: Path, n_perms: int) -> pd.DataFrame:
             n_clusters_with_sig += 1
         plt.close("all")
 
-    # significant_hits.csv
+    # significant_hits.csv + full enrichment table (every perturbation tested)
     if all_stats:
         full_stats = pd.concat(all_stats, ignore_index=True)
+        full_out = pd.DataFrame(
+            {
+                "perturbation": full_stats["perturbation"],
+                "cluster": full_stats["cluster"],
+                "delta_pct": full_stats["delta_prop"] * 100.0,
+                "p_enrich": full_stats["p_enrich"],
+                "p_deplete": full_stats["p_deplete"],
+                "q_enrich": full_stats["p_enrich_adj"],
+                "q_deplete": full_stats["p_deplete_adj"],
+                "n_cells": full_stats["n_cells"],
+                "prop_pert": full_stats["prop_pert"],
+                "prop_ntc": full_stats["prop_ntc"],
+                "direction": full_stats["direction"],
+            }
+        ).sort_values(["cluster", "delta_pct"], ascending=[True, False])
+        full_out.to_csv(out_dir / "all_enrichment_stats.csv", index=False)
+
         sig_stats = full_stats[full_stats["direction"] != "none"].copy()
         out_df = pd.DataFrame(
             {
