@@ -1,0 +1,81 @@
+panel,gene,reason
+PL,HESX1,kept
+PL,DNMT3B,kept
+PL,IDO1,kept
+PL,LCK,kept
+PL,POU5F1,kept
+PL,TRIM22,kept
+PL,NANOG,kept
+PL,CXCL5,kept
+EC,CDH9,kept
+EC,DMBX1,below_1pct (429/72767 cells)
+EC,EN1,below_1pct (10/72767 cells)
+EC,LMX1A,below_1pct (59/72767 cells)
+EC,TRPM8,below_1pct (72/72767 cells)
+EC,MYO3B,kept
+EC,OLFM3,kept
+EC,PAX3,below_1pct (69/72767 cells)
+EC,ZBTB16,below_1pct (128/72767 cells)
+EC,SOX1,below_1pct (126/72767 cells)
+EC,NOS2,below_1pct (367/72767 cells)
+EC,WNT1,below_1pct (3/72767 cells)
+EC,NR2F1,below_1pct (10/72767 cells)
+EC,NR2F2,below_1pct (67/72767 cells)
+EC,PAX6,below_1pct (101/72767 cells)
+EC,COL2A1,kept
+EC,MAP2,kept
+EC,POU4F1,below_1pct (195/72767 cells)
+EC,SDC2,kept
+EC,DRD4,kept
+EC,PAPLN,kept
+ME,ODAM,below_1pct (4/72767 cells)
+ME,HAND1,below_1pct (8/72767 cells)
+ME,ABCA4,below_1pct (82/72767 cells)
+ME,FOXA1,below_1pct (9/72767 cells)
+ME,CDX2,below_1pct (22/72767 cells)
+ME,SNAI2,below_1pct (224/72767 cells)
+ME,FOXF1,below_1pct (2/72767 cells)
+ME,PDGFRA,kept
+ME,TBX3,kept
+ME,BMP10,below_1pct (1/72767 cells)
+ME,HOPX,below_1pct (38/72767 cells)
+ME,HEY1,below_1pct (420/72767 cells)
+ME,FCN3,below_1pct (36/72767 cells)
+ME,RGS4,below_1pct (229/72767 cells)
+ME,HAND2,below_1pct (9/72767 cells)
+ME,ESM1,below_1pct (4/72767 cells)
+ME,CDH5,below_1pct (51/72767 cells)
+ME,PLVAP,below_1pct (47/72767 cells)
+ME,COLEC10,below_1pct (78/72767 cells)
+ME,ALOX15,below_1pct (194/72767 cells)
+ME,IL6ST,kept
+ME,SST,below_1pct (125/72767 cells)
+ME,NKX2-5,below_1pct (25/72767 cells)
+ME,KLF5,below_1pct (624/72767 cells)
+ME,TM4SF1,below_1pct (282/72767 cells)
+ME,GATA4,below_1pct (119/72767 cells)
+EN,CABP7,below_1pct (90/72767 cells)
+EN,CDH20,kept
+EN,FOXA1,below_1pct (9/72767 cells)
+EN,RXRG,below_1pct (21/72767 cells)
+EN,PHOX2B,below_1pct (2/72767 cells)
+EN,POU3F3,below_1pct (19/72767 cells)
+EN,HNF4A,below_1pct (53/72767 cells)
+EN,HMP19,missing
+EN,FOXP2,below_1pct (564/72767 cells)
+EN,ELAVL3,below_1pct (294/72767 cells)
+EN,SOX17,below_1pct (9/72767 cells)
+EN,CPLX2,kept
+EN,GATA6,below_1pct (40/72767 cells)
+EN,CLDN1,kept
+EN,HHEX,below_1pct (619/72767 cells)
+EN,FOXA2,below_1pct (582/72767 cells)
+EN,NODAL,kept
+EN,LEFTY1,kept
+EN,EOMES,below_1pct (264/72767 cells)
+EN,LEFTY2,kept
+MS,FGF4,below_1pct (321/72767 cells)
+MS,T,missing
+MS,GDF3,kept
+MS,NPPB,below_1pct (176/72767 cells)
+MS,NR5A2,kept

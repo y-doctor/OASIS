@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OASIS — Tsankov-panel re-clustering analysis</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --fg: #16181d;
+    --muted: #5b6470;
+    --rule: #e2e2dc;
+    --accent: #1a4480;
+    --accent-soft: #e8eef7;
+    --code-bg: #f0efe9;
+    --enrich: #1982C4;
+    --deplete: #FF595E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14151a;
+      --fg: #e8e7e1;
+      --muted: #9aa3ad;
+      --rule: #2a2c33;
+      --accent: #6ea3e5;
+      --accent-soft: #1c2a40;
+      --code-bg: #1f2027;
+    }
+  }
+  html { font-size: 16px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Charter", "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  header.lede {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+    margin: 0 0 .25rem;
+    letter-spacing: -.01em;
+  }
+  .kicker {
+    color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin: 0 0 .75rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    margin: 3rem 0 .75rem;
+    letter-spacing: -.005em;
+    border-top: 1px solid var(--rule);
+    padding-top: 2rem;
+  }
+  h3 { font-size: 1.1rem; margin: 2rem 0 .5rem; }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  blockquote {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    font-style: italic;
+    color: var(--fg);
+  }
+  blockquote p:last-child { margin-bottom: 0; }
+  code, pre, kbd, samp, .mono {
+    font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    font-size: .9em;
+  }
+  code { background: var(--code-bg); padding: .1em .35em; border-radius: 3px; }
+  pre {
+    background: var(--code-bg);
+    padding: .9rem 1rem;
+    border-radius: 6px;
+    overflow-x: auto;
+  }
+  table {
+    border-collapse: collapse;
+    margin: 1rem 0 1.5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .92rem;
+    width: 100%;
+  }
+  th, td {
+    border-bottom: 1px solid var(--rule);
+    padding: .5rem .75rem;
+    text-align: left;
+  }
+  th {
+    font-weight: 600;
+    color: var(--muted);
+    font-size: .8rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+  }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; }
+  td.dir-enrich { color: var(--enrich); font-weight: 600; }
+  td.dir-deplete { color: var(--deplete); font-weight: 600; }
+  figure {
+    margin: 1.5rem 0;
+  }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    background: white;
+  }
+  figcaption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .85rem;
+    color: var(--muted);
+    margin-top: .5rem;
+    line-height: 1.4;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  .grid figure { margin: 0; }
+  details {
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: .5rem 1rem;
+    margin: 1rem 0;
+  }
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  }
+  .meta {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .85rem;
+    color: var(--muted);
+    margin: 0 0 1rem;
+  }
+  .pill {
+    display: inline-block;
+    padding: .15rem .55rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 999px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .75rem;
+    font-weight: 600;
+    letter-spacing: .03em;
+  }
+  .tldr {
+    background: var(--accent-soft);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+  .tldr p:last-child { margin-bottom: 0; }
+  ul { margin: 0 0 1rem; padding-left: 1.5rem; }
+  li { margin: .25rem 0; }
+  hr { border: 0; border-top: 1px solid var(--rule); margin: 3rem 0; }
+  footer {
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .85rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header class="lede">
+  <p class="kicker">OASIS · Nature Methods revision</p>
+  <h1>Tsankov-panel re-clustering of OASIS Perturb-seq data</h1>
+  <p class="meta">Y. Doctor · <span id="build-date"></span></p>
+</header>
+
+<blockquote>
+  <p><strong>Reviewer:</strong> The perturb-seq clusters in the UMAPs do not seem to be very well separated. How robust are they? Are there any other categories that are enriched in other clusters, besides those highlighted in the text?</p>
+</blockquote>
+
+<div class="tldr">
+  <p><strong>TL;DR.</strong> The clustering structure depends on which genes you cluster on — it's a feature of the design, not a bug. Re-clustering the Day 4 and Day 6 OASIS Perturb-seq datasets on the union of five Tsankov 2015 lineage panels (PL, EC, ME, EN, MS — pluripotency, ectoderm, mesoderm, endoderm, mesendoderm) reveals <strong>~33 distinct partial-lineage states on Day 6</strong>, each defined by a single dominant lineage TF on top of a still-pluripotent core. Permutation enrichment (10 000 perms, BH-FDR α=0.05, NTC null) identifies <strong>FGF16, FGF4, ADM2, and CCL18</strong> as the strongest cluster-defining ligand perturbations on Day 6. Day 4 has weaker but consistent signals.</p>
+</div>
+
+<h2 id="approach">Approach</h2>
+
+<p>Each of the five Tsankov 2015 panels is a curated list of TaqMan-validated lineage markers (Tsankov et al., <em>Nat. Biotechnol.</em> 2015, <a href="https://pubmed.ncbi.nlm.nih.gov/26501952/">PMID 26501952</a>). We took the union of the five panels (80 input gene calls, 79 unique after FOXA1 dedup), filtered to genes detected in ≥1% of cells per day (Day 6: 37 genes; Day 4: 27 genes), and re-ran the clustering pipeline on this biologically-motivated feature set in place of HVGs:</p>
+
+<ol>
+  <li>Log-normalize on the full count matrix (<code>normalize_total(target=1e4)</code> + <code>log1p</code>).</li>
+  <li>Subset to detected union genes, then z-score per gene <strong>against NTC cells only</strong> — the embedding reads as deviation from the unperturbed baseline.</li>
+  <li>kNN graph (n_neighbors=30, Euclidean on z-scores), Leiden (resolution=1.0, igraph flavor), UMAP (min_dist=0.8).</li>
+  <li>Per-cluster permutation enrichment: for each ligand perturbation, draw 10 000 size-matched samples from the NTC pool, compute observed vs. null cluster proportion, two-sided <code>(sum±1)/(N+1)</code> p-values, BH-FDR α=0.05 across all perturbations within each cluster.</li>
+</ol>
+
+<p>Per-cell panel "scores" are the mean of NTC-z-scored expression across each panel's detected genes. They serve as overlays on the unified UMAP — cells with high PL score are pluripotency-like, high ME score are mesoderm-leaning, etc.</p>
+
+<details>
+  <summary>Full Tsankov panels used (verbatim from the paper)</summary>
+  <pre>PL: HESX1, DNMT3B, IDO1, LCK, POU5F1, TRIM22, NANOG, CXCL5
+EC: CDH9, DMBX1, EN1, LMX1A, TRPM8, MYO3B, OLFM3, PAX3, ZBTB16, SOX1, NOS2,
+    WNT1, NR2F1, NR2F2, PAX6, COL2A1, MAP2, POU4F1, SDC2, DRD4, PAPLN
+ME: ODAM, HAND1, ABCA4, FOXA1, CDX2, SNAI2, FOXF1, PDGFRA, TBX3, BMP10, HOPX,
+    HEY1, FCN3, RGS4, HAND2, ESM1, CDH5, PLVAP, COLEC10, ALOX15, IL6ST, SST,
+    NKX2-5, KLF5, TM4SF1, GATA4
+EN: CABP7, CDH20, FOXA1, RXRG, PHOX2B, POU3F3, HNF4A, HMP19, FOXP2, ELAVL3,
+    SOX17, CPLX2, GATA6, CLDN1, HHEX, FOXA2, NODAL, LEFTY1, EOMES, LEFTY2
+MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
+</details>
+
+<h2 id="day6">Day 6 results</h2>
+
+<p class="meta"><span class="pill">19 288 cells</span> &nbsp; <span class="pill">37 / 79 genes detected</span> &nbsp; <span class="pill" id="d6-clusters">N clusters</span> &nbsp; <span class="pill" id="d6-hits">N significant hits</span></p>
+
+<h3>Unified UMAP — clustering and lineage scores</h3>
+
+<figure>
+  <img src="figures/Day6_umap_clusters.png" alt="Day 6 UMAP colored by Leiden cluster">
+  <figcaption><strong>Figure 1.</strong> Day 6 UMAP, colored by Leiden cluster (resolution=1.0). The right-side mass is the largely-pluripotent iPSC core; small dispersed clusters on the left and outer regions are partial-lineage-committed populations.</figcaption>
+</figure>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day6_umap_score_PL.png" alt="Day 6 UMAP colored by PL score">
+    <figcaption><strong>PL score</strong> (mean NTC-z, 8 genes). Highest in the right-side iPSC mass and the bottom cluster.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_umap_score_EC.png" alt="Day 6 UMAP colored by EC score">
+    <figcaption><strong>EC score</strong> (12 genes). Lights up several dispersed clusters and a distinct neural-committed island.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_umap_score_ME.png" alt="Day 6 UMAP colored by ME score">
+    <figcaption><strong>ME score</strong> (7 genes). Concentrated in the left-side dispersed clusters — mesoderm-committed cells separating from the iPSC core.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_umap_score_EN.png" alt="Day 6 UMAP colored by EN score">
+    <figcaption><strong>EN score</strong> (7 genes). A handful of clusters with endoderm marker expression.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_umap_score_MS.png" alt="Day 6 UMAP colored by MS score">
+    <figcaption><strong>MS score</strong> (3 genes after detection filter — FGF4, GDF3, NR5A2). A few discrete mesendoderm subpopulations.</figcaption>
+  </figure>
+</div>
+
+<h3>Are these clusters biologically distinct?</h3>
+
+<p>Yes — and the dotplot of every union gene against every cluster shows it directly. Each non-iPSC cluster has a single strong lineage-TF marker on top of an otherwise pluripotent gene-expression profile, indicating cells caught at the very earliest stage of lineage commitment driven by a specific ligand perturbation.</p>
+
+<figure>
+  <img src="figures/Day6_panel_dotplot.png" alt="Day 6 dotplot of all union genes per Leiden cluster">
+  <figcaption><strong>Figure 2.</strong> All union genes (columns, grouped by source panel) × Leiden clusters (rows). Dot size = % cells expressing; color = mean log-expression (per-gene scaled). Note that the PL columns (HESX1, DNMT3B, POU5F1, TRIM22, NANOG) are dense across nearly every cluster, while EC/ME/EN/MS markers each define one or two specific clusters — confirming partial-lineage specification on a pluripotent background.</figcaption>
+</figure>
+
+<h3>Significant ligand enrichments</h3>
+
+<p>Permutation test (10 000 perms, BH-FDR α=0.05, NTC pool as null, ≥20 cells per perturbation):</p>
+
+<div id="d6-hits-table"></div>
+
+<h3>Per-cluster Δ% bar plots</h3>
+
+<p>For each cluster with at least one FDR-significant hit, the bar shows Δ% = (perturbation cluster proportion − NTC cluster proportion). Blue = enriched, red = depleted. With one ligand per cluster surviving FDR, these read as "one perturbation drives most cells of its kind into one cluster".</p>
+
+<div class="grid" id="d6-bars"></div>
+
+<h2 id="day4">Day 4 results</h2>
+
+<p class="meta"><span class="pill">72 767 cells</span> &nbsp; <span class="pill">27 / 79 genes detected</span> &nbsp; <span class="pill" id="d4-clusters">N clusters</span> &nbsp; <span class="pill" id="d4-hits">N significant hits</span></p>
+
+<figure>
+  <img src="figures/Day4_umap_clusters.png" alt="Day 4 UMAP colored by Leiden cluster">
+  <figcaption><strong>Figure 3.</strong> Day 4 UMAP. Many more cells (72k vs 19k) and far more clusters — reflecting both biological heterogeneity and the increased granularity that ~3.7× more cells affords Leiden at the same resolution. The detected gene count is also lower (27 vs 37), since several lineage TFs are not yet expressed at Day 4.</figcaption>
+</figure>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day4_umap_score_PL.png" alt="Day 4 PL score"><figcaption>Day 4 PL score</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day4_umap_score_EC.png" alt="Day 4 EC score"><figcaption>Day 4 EC score</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day4_umap_score_ME.png" alt="Day 4 ME score"><figcaption>Day 4 ME score</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day4_umap_score_EN.png" alt="Day 4 EN score"><figcaption>Day 4 EN score</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day4_umap_score_MS.png" alt="Day 4 MS score"><figcaption>Day 4 MS score</figcaption>
+  </figure>
+</div>
+
+<figure>
+  <img src="figures/Day4_panel_dotplot.png" alt="Day 4 dotplot of all union genes per cluster">
+  <figcaption><strong>Figure 4.</strong> Day 4 dotplot. Same lineage-TF-burst pattern as Day 6, but earlier in commitment so several panels are sparser.</figcaption>
+</figure>
+
+<h3>Significant ligand enrichments — Day 4</h3>
+
+<div id="d4-hits-table"></div>
+
+<div class="grid" id="d4-bars"></div>
+
+<h2 id="caveats">Caveats and methods notes</h2>
+
+<ul>
+  <li><strong>Resolution choice (Leiden=1.0)</strong> is an aggressive partition. Lower resolutions collapse the partial-lineage clusters into broader buckets but obscure the per-ligand specificity that's the headline finding here. The dotplot confirms that each cluster is biologically distinct (single dominant lineage TF) — they're not noise-driven micro-clusters.</li>
+  <li><strong>NTC-anchored z-score</strong> is the only departure from the original HVG pipeline (which uses population-mean <code>sc.pp.scale</code>). Anchoring to NTC makes "deviation from unperturbed baseline" the geometry of the embedding, which is more interpretable for a perturbation screen but is a second variable changed vs. the published clustering.</li>
+  <li><strong>BH-FDR is per-cluster</strong>, across ~300–600 perturbations passing the ≥20-cell filter. Several clusters had near-significant hits (q ≈ 0.05–0.1) that are not shown.</li>
+  <li><strong>Random seed 42</strong> throughout; results are byte-reproducible.</li>
+</ul>
+
+<h2 id="data">Data and code</h2>
+
+<ul>
+  <li><a href="data/Day6_significant_hits.csv">Day 6 significant_hits.csv</a> · <a href="data/Day4_significant_hits.csv">Day 4 significant_hits.csv</a></li>
+  <li><a href="data/Day6_summary.csv">Day 6 summary.csv</a> · <a href="data/Day4_summary.csv">Day 4 summary.csv</a></li>
+  <li><a href="data/Day6_cluster_sizes.csv">Day 6 cluster sizes</a> · <a href="data/Day4_cluster_sizes.csv">Day 4 cluster sizes</a></li>
+  <li><a href="data/Day6_dropped_genes.csv">Day 6 dropped_genes.csv</a> · <a href="data/Day4_dropped_genes.csv">Day 4 dropped_genes.csv</a></li>
+  <li><a href="data/Day6_union_genes.csv">Day 6 union_genes.csv</a> · <a href="data/Day4_union_genes.csv">Day 4 union_genes.csv</a></li>
+  <li>Source: <a href="https://github.com/y-doctor/Ligandome_Screens/blob/main/revision_scripts/revision_feature_set_analysis.py"><code>revision_scripts/revision_feature_set_analysis.py</code></a></li>
+</ul>
+
+<footer>
+  Generated from <code>revision_scripts/revision_feature_set_analysis.py</code>. Reproducible with seed=42, scanpy 1.11, perturb_seq_env.
+</footer>
+
+</main>
+
+<script>
+document.getElementById('build-date').textContent = new Date().toISOString().slice(0,10);
+
+async function fetchCsv(path) {
+  const r = await fetch(path);
+  if (!r.ok) return [];
+  const t = await r.text();
+  const rows = t.trim().split(/\r?\n/).map(r => r.split(','));
+  const header = rows.shift();
+  return rows.map(r => Object.fromEntries(header.map((h,i)=>[h, r[i]])));
+}
+
+function fmtNum(v, dec=3) {
+  const n = Number(v);
+  if (!Number.isFinite(n)) return v;
+  if (Math.abs(n) >= 100) return n.toFixed(1);
+  if (Math.abs(n) >= 1) return n.toFixed(2);
+  return n.toExponential(2);
+}
+
+async function buildHitsTable(csvPath, mountId) {
+  const rows = await fetchCsv(csvPath);
+  const mount = document.getElementById(mountId);
+  if (rows.length === 0) {
+    mount.innerHTML = '<p class="meta">No FDR-significant hits.</p>';
+    return rows;
+  }
+  rows.sort((a,b) => Math.abs(+b.delta_pct) - Math.abs(+a.delta_pct));
+  const head = ['Cluster','Perturbation','Δ%','q (enrich)','q (deplete)','n cells','Direction'];
+  let html = '<table><thead><tr>' + head.map(h=>`<th>${h}</th>`).join('') + '</tr></thead><tbody>';
+  for (const r of rows) {
+    html += `<tr>
+      <td class="num">${r.cluster}</td>
+      <td><code>${r.perturbation}</code></td>
+      <td class="num">${(+r.delta_pct).toFixed(1)}</td>
+      <td class="num">${fmtNum(r.q_enrich)}</td>
+      <td class="num">${fmtNum(r.q_deplete)}</td>
+      <td class="num">${r.n_cells}</td>
+      <td class="dir-${r.direction}">${r.direction}</td>
+    </tr>`;
+  }
+  html += '</tbody></table>';
+  mount.innerHTML = html;
+  return rows;
+}
+
+async function buildBarGrid(rows, day, mountId) {
+  const clusters = [...new Set(rows.map(r => r.cluster))].sort((a,b)=>+a-+b);
+  const mount = document.getElementById(mountId);
+  if (clusters.length === 0) { mount.innerHTML = '<p class="meta">No bar plots.</p>'; return; }
+  mount.innerHTML = clusters.map(c =>
+    `<figure>
+      <img src="figures/${day}_cluster_${c}_significant_ligands.png" alt="${day} cluster ${c} significant ligands">
+      <figcaption>Cluster ${c}</figcaption>
+    </figure>`
+  ).join('');
+}
+
+async function buildSummary(csvPath, clustersId, hitsId) {
+  const rows = await fetchCsv(csvPath);
+  if (rows.length === 0) return;
+  const r = rows[0];
+  document.getElementById(clustersId).textContent = `${r.n_clusters} Leiden clusters`;
+  document.getElementById(hitsId).textContent = `${r.total_sig_ligands} significant hits in ${r.n_clusters_with_sig_hits} clusters`;
+}
+
+(async () => {
+  await buildSummary('data/Day6_summary.csv', 'd6-clusters', 'd6-hits');
+  await buildSummary('data/Day4_summary.csv', 'd4-clusters', 'd4-hits');
+  const d6 = await buildHitsTable('data/Day6_significant_hits.csv', 'd6-hits-table');
+  await buildBarGrid(d6, 'Day6', 'd6-bars');
+  const d4 = await buildHitsTable('data/Day4_significant_hits.csv', 'd4-hits-table');
+  await buildBarGrid(d4, 'Day4', 'd4-bars');
+})();
+</script>
+
+</body>
+</html>

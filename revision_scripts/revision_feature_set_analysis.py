@@ -1,22 +1,23 @@
-"""Re-cluster Perturb-seq data using Tsankov 2015 lineage panels and run
-permutation-based ligand enrichment per Leiden cluster.
+"""Re-cluster Perturb-seq data on the UNION of Tsankov 2015 lineage panels
+(PL/EC/ME/EN/MS), then run permutation-based ligand enrichment per Leiden
+cluster. One unified clustering + 5 per-cell panel-score overlays.
 
-One mini-analysis per (day, panel). For each: subset to detected panel genes,
-log-normalize on full adata (before subset), per-gene z-score on subset, PCA
-(n_comps=min(20, n_genes)), neighbors (n=15), leiden (res=1.0), UMAP, then
-permutation enrichment (10k perms, BH-FDR alpha=0.05, NTC null).
+Z-scoring is anchored to NTC cells (mu/sigma computed on NTC only), so the
+embedding reads as deviation-from-unperturbed-baseline. Per-cell panel
+scores are means of NTC-z-scored values across each panel's detected genes.
+
+Permutation test (10k perms, BH-FDR alpha=0.05, NTC null) copied verbatim
+from Day{4,6}_Analysis.ipynb. Vectorized inner loop.
 
 Usage:
     python revision_feature_set_analysis.py \
         --h5ad <path> --day {Day4,Day6} \
-        --panel {PL,EC,ME,EN,MS,all} \
         --output-dir <path> [--n-permutations 10000]
 """
 
 from __future__ import annotations
 
 import argparse
-import os
 from pathlib import Path
 
 import matplotlib
@@ -49,12 +50,14 @@ TSANKOV_PANELS: dict[str, list[str]] = {
     "MS": ["FGF4", "T", "GDF3", "NPPB", "NR5A2"],
 }
 
+NTC_LABEL = "NTC"
+PERTURBATION_KEY = "perturbation"
 RANDOM_STATE = 42
 
 
 # ---------------------------------------------------------------------------
-# permutation_cluster_enrichment — copied verbatim from
-# Perturb_Seq_Analysis/analysis_scripts/Day4_Analysis.ipynb (cell 35).
+# permutation_cluster_enrichment — copied from Day{4,6}_Analysis.ipynb cell 35,
+# with a vectorized null draw (one rng.choice for all permutations per pert).
 # ---------------------------------------------------------------------------
 def permutation_cluster_enrichment(
     adata,
@@ -67,18 +70,7 @@ def permutation_cluster_enrichment(
     min_cells_per_perturb: int = 20,
     random_state: int | None = 0,
 ):
-    """Permutation test for perturbation enrichment/depletion in a Leiden cluster.
-
-    For a given Leiden cluster, compares each perturbation against the NTC population:
-      - Observed: proportion of that perturbation's cells in the cluster
-      - Null: draw n cells *with replacement* from NTC cells, repeat n_permutations times,
-        compute the proportion of sampled cells in the cluster.
-      - p_enrich: fraction of null proportions >= observed proportion
-      - p_deplete: fraction of null proportions <= observed proportion
-
-    For this cluster, applies BH (FDR) correction separately to enrichment and depletion p-values
-    across perturbations, then plots significantly enriched/depleted perturbations.
-    """
+    """Permutation test for perturbation enrichment/depletion in a Leiden cluster."""
     from statsmodels.stats.multitest import multipletests
 
     if leiden_key not in adata.obs.columns:
@@ -125,7 +117,6 @@ def permutation_cluster_enrichment(
         obs_in_cluster = int((cluster_mask & mask_p).sum())
         obs_prop = obs_in_cluster / n_p
 
-        # Vectorized null: draw all permutations at once, count cluster hits per row.
         sample_idx = rng.choice(ntc_indices, size=(n_permutations, n_p), replace=True)
         null_counts = cluster_mask_arr[sample_idx].sum(axis=1)
         null_props = null_counts / n_p
@@ -175,77 +166,53 @@ def permutation_cluster_enrichment(
     fig, ax = plt.subplots(figsize=(9, 5), dpi=130)
     x = np.arange(len(sig_df))
     colors = np.where(sig_df["direction"] == "enriched", "#1982C4", "#FF595E")
-
     delta_pct = sig_df["delta_prop"] * 100.0
     ax.bar(x, delta_pct, color=colors, alpha=0.9)
     ax.axhline(0, color="black", linewidth=1.0, alpha=0.7)
-
     ax.set_xticks(x)
     ax.set_xticklabels(sig_df["perturbation"], rotation=90, fontsize=9)
     ax.set_ylabel("Δ% (perturbation − NTC)", fontsize=14)
     ax.set_xlabel("Perturbation", fontsize=14)
-    ax.set_title(
-        f"Cluster {cluster_str}: perturbations enriched/depleted vs NTC", fontsize=16
-    )
+    ax.set_title(f"Cluster {cluster_str}: perturbations enriched/depleted vs NTC", fontsize=16)
     ax.tick_params(labelsize=12)
-
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.spines["left"].set_linewidth(2.0)
     ax.spines["bottom"].set_linewidth(2.0)
     ax.grid(False)
-
     plt.tight_layout()
 
     return fig, stats_df
 
 
 # ---------------------------------------------------------------------------
-# Panel helpers
+# Panel + normalization helpers
 # ---------------------------------------------------------------------------
-def resolve_panel_genes(adata, symbols: list[str]) -> tuple[list[str], pd.DataFrame]:
-    """Return (detected panel genes, dropped_df).
-
-    A gene is kept if it appears in var_names AND has count > 0 in >=1% of cells
-    (computed on layers['counts']).
-    """
+def detected_panel_genes(adata, symbols: list[str]) -> tuple[list[str], pd.DataFrame]:
+    """Return panel genes present in var_names AND counts > 0 in >=1% of cells."""
     n_cells = adata.n_obs
     threshold = 0.01 * n_cells
     var_set = set(adata.var_names)
+    counts = adata.layers["counts"] if "counts" in adata.layers else adata.X
 
     rows = []
     detected = []
-
-    if "counts" in adata.layers:
-        counts = adata.layers["counts"]
-    else:
-        counts = adata.X
-
-    # Precompute nonzero-cell counts per gene once (over whole matrix is expensive;
-    # instead compute only for the panel symbols).
     for g in symbols:
         if g not in var_set:
             rows.append({"gene": g, "reason": "missing"})
             continue
         col = counts[:, adata.var_names.get_loc(g)]
-        if sp.issparse(col):
-            n_expr = col.getnnz()
-        else:
-            n_expr = int(np.count_nonzero(np.asarray(col).ravel()))
+        n_expr = col.getnnz() if sp.issparse(col) else int(np.count_nonzero(np.asarray(col).ravel()))
         if n_expr < threshold:
-            rows.append(
-                {"gene": g, "reason": f"below_1pct ({n_expr}/{n_cells} cells)"}
-            )
+            rows.append({"gene": g, "reason": f"below_1pct ({n_expr}/{n_cells} cells)"})
         else:
             detected.append(g)
             rows.append({"gene": g, "reason": "kept"})
-
-    dropped_df = pd.DataFrame(rows)
-    return detected, dropped_df
+    return detected, pd.DataFrame(rows)
 
 
-def prepare_normalized_adata(adata):
-    """Copy adata; set X = counts; normalize_total(1e4); log1p. Returns new AnnData."""
+def prepare_log_adata(adata):
+    """Copy adata, set X = counts, normalize_total(1e4), log1p. Returns new AnnData."""
     out = adata.copy()
     if "counts" in out.layers:
         out.X = out.layers["counts"].copy()
@@ -254,56 +221,95 @@ def prepare_normalized_adata(adata):
     return out
 
 
+def ntc_zscore(adata_log, union_genes: list[str], clip: float = 10.0) -> tuple[np.ndarray, list[str]]:
+    """Compute (X - mu_NTC) / sigma_NTC on union_genes; clip to ±`clip`.
+
+    Returns (matrix [n_cells x n_kept_genes], list of kept gene symbols after
+    dropping any gene with sigma_NTC == 0).
+    """
+    pert = adata_log.obs[PERTURBATION_KEY].astype(str)
+    ntc_mask = (pert == NTC_LABEL).values
+    if ntc_mask.sum() == 0:
+        raise ValueError("No NTC cells found")
+
+    idx = [adata_log.var_names.get_loc(g) for g in union_genes]
+    X_panel = adata_log.X[:, idx]
+    if sp.issparse(X_panel):
+        X_panel = X_panel.toarray()
+    X_panel = np.asarray(X_panel, dtype=np.float32)
+
+    mu = X_panel[ntc_mask].mean(axis=0)
+    sigma = X_panel[ntc_mask].std(axis=0)
+
+    keep = sigma > 0
+    if not keep.all():
+        dropped = [g for g, k in zip(union_genes, keep) if not k]
+        print(f"  dropped {len(dropped)} genes with zero NTC std: {dropped}")
+
+    X_panel = X_panel[:, keep]
+    mu = mu[keep]
+    sigma = sigma[keep]
+    Z = (X_panel - mu) / sigma
+    np.clip(Z, -clip, clip, out=Z)
+    kept_genes = [g for g, k in zip(union_genes, keep) if k]
+    return Z, kept_genes
+
+
 # ---------------------------------------------------------------------------
-# Per-panel runner
+# Main analysis
 # ---------------------------------------------------------------------------
-def run_panel(
-    adata_norm,
-    panel_name: str,
-    symbols: list[str],
-    day: str,
-    out_root: Path,
-    n_perms: int,
-) -> dict:
-    panel_dir = out_root / day / panel_name
-    panel_dir.mkdir(parents=True, exist_ok=True)
+def run(adata, day: str, out_dir: Path, n_perms: int) -> pd.DataFrame:
+    """Run union-mode analysis. Returns a one-row summary DataFrame."""
+    out_dir.mkdir(parents=True, exist_ok=True)
 
-    n_input = len(symbols)
-    n_cells = adata_norm.n_obs
+    # Per-panel detection (on raw counts)
+    per_panel_detected: dict[str, list[str]] = {}
+    dropped_rows = []
+    for panel_name, symbols in TSANKOV_PANELS.items():
+        det, drop_df = detected_panel_genes(adata, symbols)
+        per_panel_detected[panel_name] = det
+        drop_df.insert(0, "panel", panel_name)
+        dropped_rows.append(drop_df)
+        print(f"[{day}] panel {panel_name}: {len(det)}/{len(symbols)} detected")
+    dropped_df = pd.concat(dropped_rows, ignore_index=True)
+    dropped_df.to_csv(out_dir / "dropped_genes.csv", index=False)
 
-    detected, dropped_df = resolve_panel_genes(adata_norm, symbols)
-    dropped_df.to_csv(panel_dir / "dropped_genes.csv", index=False)
+    # Union of detected genes (preserve panel mapping for reporting)
+    union_genes: list[str] = []
+    panel_membership: dict[str, list[str]] = {}
+    for panel_name, det in per_panel_detected.items():
+        for g in det:
+            if g not in union_genes:
+                union_genes.append(g)
+        panel_membership[panel_name] = det
+    print(f"[{day}] union: {len(union_genes)} genes")
 
-    summary_row = {
-        "day": day,
-        "panel": panel_name,
-        "n_input_genes": n_input,
-        "n_detected_genes": len(detected),
-        "n_cells": n_cells,
-        "n_clusters": 0,
-        "n_clusters_with_sig_hits": 0,
-        "total_sig_ligands": 0,
-        "notable_ligands": "",
-        "skip_reason": "",
-    }
+    # log-normalize full adata, then z-score against NTC
+    adata_log = prepare_log_adata(adata)
+    Z, kept_union = ntc_zscore(adata_log, union_genes)
 
-    if len(detected) < 3:
-        msg = f"<3 detected panel genes ({len(detected)}); skipping."
-        print(f"[{day}/{panel_name}] {msg}")
-        summary_row["skip_reason"] = msg
-        return summary_row
+    # Update per-panel membership to only kept (post-NTC-std-filter) genes
+    kept_set = set(kept_union)
+    panel_membership = {p: [g for g in genes if g in kept_set] for p, genes in panel_membership.items()}
 
-    print(
-        f"[{day}/{panel_name}] {len(detected)}/{n_input} genes detected; "
-        f"clustering on {n_cells} cells"
+    # Write union_genes.csv with panel membership
+    rows = []
+    for g in kept_union:
+        panels_for_g = [p for p, genes in panel_membership.items() if g in genes]
+        rows.append({"gene": g, "panels": ",".join(panels_for_g)})
+    pd.DataFrame(rows).to_csv(out_dir / "union_genes.csv", index=False)
+
+    # Build a panel-gene AnnData using the NTC-z-scored matrix as X
+    import anndata as ad
+    adata_panel = ad.AnnData(
+        X=Z,
+        obs=adata_log.obs.copy(),
+        var=pd.DataFrame(index=kept_union),
     )
-
-    adata_panel = adata_norm[:, detected].copy()
-    sc.pp.scale(adata_panel)
 
     sc.pp.neighbors(
         adata_panel,
-        n_neighbors=15,
+        n_neighbors=30,
         use_rep="X",
         random_state=RANDOM_STATE,
     )
@@ -315,76 +321,80 @@ def run_panel(
         directed=False,
         random_state=RANDOM_STATE,
     )
-    sc.tl.umap(adata_panel, random_state=RANDOM_STATE)
+    sc.tl.umap(adata_panel, random_state=RANDOM_STATE, min_dist=0.8)
 
-    X_scaled = adata_panel.X
-    if sp.issparse(X_scaled):
-        X_scaled = X_scaled.toarray()
-    adata_panel.obs["panel_score"] = np.asarray(X_scaled).mean(axis=1)
+    # Per-panel scores: mean of NTC-z-scored expression across panel genes (kept).
+    for panel_name, genes in panel_membership.items():
+        if not genes:
+            adata_panel.obs[f"score_{panel_name}"] = np.nan
+            continue
+        idx = [kept_union.index(g) for g in genes]
+        adata_panel.obs[f"score_{panel_name}"] = Z[:, idx].mean(axis=1)
 
+    # Cluster sizes
     clusters = sorted(adata_panel.obs["leiden"].unique(), key=lambda c: int(c))
-    cluster_sizes = (
-        adata_panel.obs["leiden"].value_counts().rename_axis("cluster").reset_index(name="n_cells")
-    )
-    cluster_sizes["cluster"] = cluster_sizes["cluster"].astype(int)
-    cluster_sizes = cluster_sizes.sort_values("cluster").reset_index(drop=True)
-    cluster_sizes.to_csv(panel_dir / "cluster_sizes.csv", index=False)
+    cs = adata_panel.obs["leiden"].value_counts().rename_axis("cluster").reset_index(name="n_cells")
+    cs["cluster"] = cs["cluster"].astype(int)
+    cs.sort_values("cluster").to_csv(out_dir / "cluster_sizes.csv", index=False)
 
-    # UMAP colored by Leiden
-    fig, ax = plt.subplots(figsize=(6, 6))
+    # UMAP: clusters
+    fig, ax = plt.subplots(figsize=(7, 7))
     sc.pl.umap(
         adata_panel,
         color=["leiden"],
         frameon=False,
         legend_loc="on data",
-        size=20,
+        size=15,
         palette="Spectral",
         show=False,
         ax=ax,
         legend_fontoutline=4,
-        legend_fontsize="medium",
+        legend_fontsize="small",
     )
-    fig.savefig(panel_dir / "umap_clusters.pdf", bbox_inches="tight")
+    fig.savefig(out_dir / "umap_clusters.pdf", bbox_inches="tight")
     plt.close(fig)
 
-    # UMAP colored by panel score
-    fig, ax = plt.subplots(figsize=(6, 6))
-    sc.pl.umap(
-        adata_panel,
-        color=["panel_score"],
-        frameon=False,
-        size=20,
-        cmap="viridis",
-        show=False,
-        ax=ax,
-    )
-    fig.savefig(panel_dir / "umap_score.pdf", bbox_inches="tight")
-    plt.close(fig)
+    # UMAPs: per-panel scores (one PDF each)
+    for panel_name in TSANKOV_PANELS:
+        fig, ax = plt.subplots(figsize=(6, 6))
+        sc.pl.umap(
+            adata_panel,
+            color=[f"score_{panel_name}"],
+            frameon=False,
+            size=15,
+            cmap="viridis",
+            show=False,
+            ax=ax,
+            title=f"{panel_name} score (mean NTC-z, n={len(panel_membership[panel_name])} genes)",
+        )
+        fig.savefig(out_dir / f"umap_score_{panel_name}.pdf", bbox_inches="tight")
+        plt.close(fig)
 
-    # Dotplot of panel genes x leiden, using log-normalized (not scaled) expression.
-    adata_norm_local = adata_norm[:, detected].copy()
+    # Dotplot: union genes grouped by panel × leiden, log-normalized expression.
+    adata_norm_local = adata_log[:, kept_union].copy()
     adata_norm_local.obs["leiden"] = adata_panel.obs["leiden"].values
+    var_group = {p: panel_membership[p] for p in TSANKOV_PANELS if panel_membership[p]}
     fig = sc.pl.dotplot(
         adata_norm_local,
-        var_names=detected,
+        var_names=var_group,
         groupby="leiden",
         standard_scale="var",
         show=False,
         return_fig=True,
     )
-    fig.savefig(panel_dir / "panel_dotplot.pdf", bbox_inches="tight")
+    fig.savefig(out_dir / "panel_dotplot.pdf", bbox_inches="tight")
     plt.close("all")
 
     # Permutation enrichment per cluster
     all_stats = []
     n_clusters_with_sig = 0
     for c in clusters:
-        print(f"[{day}/{panel_name}] cluster {c}...", flush=True)
+        print(f"[{day}] cluster {c}/{len(clusters)-1}...", flush=True)
         fig, stats_df = permutation_cluster_enrichment(
             adata_panel,
             cluster_number=c,
-            perturbation_key="perturbation",
-            control_label="NTC",
+            perturbation_key=PERTURBATION_KEY,
+            control_label=NTC_LABEL,
             leiden_key="leiden",
             n_permutations=n_perms,
             alpha=0.05,
@@ -394,14 +404,12 @@ def run_panel(
         if not stats_df.empty:
             all_stats.append(stats_df)
         if fig is not None:
-            fig.savefig(
-                panel_dir / f"cluster_{c}_significant_ligands.pdf",
-                bbox_inches="tight",
-            )
+            fig.savefig(out_dir / f"cluster_{c}_significant_ligands.pdf", bbox_inches="tight")
             plt.close(fig)
             n_clusters_with_sig += 1
         plt.close("all")
 
+    # significant_hits.csv
     if all_stats:
         full_stats = pd.concat(all_stats, ignore_index=True)
         sig_stats = full_stats[full_stats["direction"] != "none"].copy()
@@ -418,46 +426,46 @@ def run_panel(
                 "direction": sig_stats["direction"],
             }
         ).sort_values(["cluster", "delta_pct"], ascending=[True, False])
-        out_df.to_csv(panel_dir / "significant_hits.csv", index=False)
-
+        out_df.to_csv(out_dir / "significant_hits.csv", index=False)
+        total_sig = int(len(out_df))
         notable = (
             out_df.reindex(out_df["delta_pct"].abs().sort_values(ascending=False).index)
-            .head(5)["perturbation"]
+            .head(10)["perturbation"]
             .tolist()
         )
-        summary_row["total_sig_ligands"] = int(len(out_df))
-        summary_row["notable_ligands"] = ";".join(notable)
     else:
         pd.DataFrame(
             columns=[
                 "perturbation", "cluster", "delta_pct", "p_enrich", "p_deplete",
                 "q_enrich", "q_deplete", "n_cells", "direction",
             ]
-        ).to_csv(panel_dir / "significant_hits.csv", index=False)
+        ).to_csv(out_dir / "significant_hits.csv", index=False)
+        total_sig = 0
+        notable = []
 
-    summary_row["n_clusters"] = len(clusters)
-    summary_row["n_clusters_with_sig_hits"] = n_clusters_with_sig
-    return summary_row
+    summary = pd.DataFrame(
+        [
+            {
+                "day": day,
+                "n_input_total": sum(len(s) for s in TSANKOV_PANELS.values()),
+                "n_union_input": len(set(g for s in TSANKOV_PANELS.values() for g in s)),
+                "n_union_detected": len(kept_union),
+                "n_cells": adata_panel.n_obs,
+                "n_clusters": len(clusters),
+                "n_clusters_with_sig_hits": n_clusters_with_sig,
+                "total_sig_ligands": total_sig,
+                "notable_ligands": ";".join(notable),
+            }
+        ]
+    )
+    return summary
 
 
-# ---------------------------------------------------------------------------
-# Entrypoint
-# ---------------------------------------------------------------------------
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--h5ad", required=True, type=Path)
     p.add_argument("--day", required=True, choices=["Day4", "Day6"])
-    p.add_argument(
-        "--panel",
-        required=True,
-        choices=["PL", "EC", "ME", "EN", "MS", "all"],
-    )
-    p.add_argument(
-        "--output-dir",
-        required=True,
-        type=Path,
-        help="Root output dir; per-day/per-panel subdirs created underneath.",
-    )
+    p.add_argument("--output-dir", required=True, type=Path)
     p.add_argument("--n-permutations", type=int, default=10000)
     return p.parse_args()
 
@@ -471,30 +479,10 @@ def main():
     adata = sc.read_h5ad(args.h5ad)
     print(f"  shape: {adata.shape}")
 
-    adata_norm = prepare_normalized_adata(adata)
-    del adata
+    out_dir = args.output_dir / args.day
+    summary = run(adata, day=args.day, out_dir=out_dir, n_perms=args.n_permutations)
 
-    panels_to_run = (
-        ["PL", "EC", "ME", "EN", "MS"] if args.panel == "all" else [args.panel]
-    )
-
-    day_dir = args.output_dir / args.day
-    day_dir.mkdir(parents=True, exist_ok=True)
-
-    rows = []
-    for panel in panels_to_run:
-        row = run_panel(
-            adata_norm=adata_norm,
-            panel_name=panel,
-            symbols=TSANKOV_PANELS[panel],
-            day=args.day,
-            out_root=args.output_dir,
-            n_perms=args.n_permutations,
-        )
-        rows.append(row)
-
-    summary = pd.DataFrame(rows)
-    summary_path = day_dir / "summary.csv"
+    summary_path = out_dir / "summary.csv"
     summary.to_csv(summary_path, index=False)
     print(f"\nWrote {summary_path}\n")
     print(summary.to_string(index=False))

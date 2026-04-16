@@ -1,0 +1,81 @@
+panel,gene,reason
+PL,HESX1,kept
+PL,DNMT3B,kept
+PL,IDO1,kept
+PL,LCK,kept
+PL,POU5F1,kept
+PL,TRIM22,kept
+PL,NANOG,kept
+PL,CXCL5,kept
+EC,CDH9,kept
+EC,DMBX1,kept
+EC,EN1,below_1pct (11/19288 cells)
+EC,LMX1A,kept
+EC,TRPM8,below_1pct (115/19288 cells)
+EC,MYO3B,kept
+EC,OLFM3,kept
+EC,PAX3,below_1pct (31/19288 cells)
+EC,ZBTB16,below_1pct (114/19288 cells)
+EC,SOX1,below_1pct (101/19288 cells)
+EC,NOS2,kept
+EC,WNT1,below_1pct (8/19288 cells)
+EC,NR2F1,below_1pct (4/19288 cells)
+EC,NR2F2,below_1pct (70/19288 cells)
+EC,PAX6,kept
+EC,COL2A1,kept
+EC,MAP2,kept
+EC,POU4F1,below_1pct (135/19288 cells)
+EC,SDC2,kept
+EC,DRD4,kept
+EC,PAPLN,kept
+ME,ODAM,below_1pct (1/19288 cells)
+ME,HAND1,kept
+ME,ABCA4,below_1pct (27/19288 cells)
+ME,FOXA1,below_1pct (2/19288 cells)
+ME,CDX2,below_1pct (5/19288 cells)
+ME,SNAI2,below_1pct (28/19288 cells)
+ME,FOXF1,below_1pct (1/19288 cells)
+ME,PDGFRA,kept
+ME,TBX3,kept
+ME,BMP10,below_1pct (1/19288 cells)
+ME,HOPX,below_1pct (101/19288 cells)
+ME,HEY1,below_1pct (132/19288 cells)
+ME,FCN3,below_1pct (36/19288 cells)
+ME,RGS4,below_1pct (63/19288 cells)
+ME,HAND2,below_1pct (3/19288 cells)
+ME,ESM1,below_1pct (1/19288 cells)
+ME,CDH5,below_1pct (5/19288 cells)
+ME,PLVAP,below_1pct (40/19288 cells)
+ME,COLEC10,below_1pct (54/19288 cells)
+ME,ALOX15,kept
+ME,IL6ST,kept
+ME,SST,below_1pct (5/19288 cells)
+ME,NKX2-5,below_1pct (17/19288 cells)
+ME,KLF5,kept
+ME,TM4SF1,kept
+ME,GATA4,below_1pct (17/19288 cells)
+EN,CABP7,below_1pct (148/19288 cells)
+EN,CDH20,kept
+EN,FOXA1,below_1pct (2/19288 cells)
+EN,RXRG,below_1pct (41/19288 cells)
+EN,PHOX2B,missing
+EN,POU3F3,below_1pct (11/19288 cells)
+EN,HNF4A,below_1pct (11/19288 cells)
+EN,HMP19,missing
+EN,FOXP2,kept
+EN,ELAVL3,kept
+EN,SOX17,below_1pct (3/19288 cells)
+EN,CPLX2,kept
+EN,GATA6,below_1pct (42/19288 cells)
+EN,CLDN1,kept
+EN,HHEX,kept
+EN,FOXA2,below_1pct (17/19288 cells)
+EN,NODAL,kept
+EN,LEFTY1,below_1pct (34/19288 cells)
+EN,EOMES,below_1pct (116/19288 cells)
+EN,LEFTY2,below_1pct (49/19288 cells)
+MS,FGF4,kept
+MS,T,missing
+MS,GDF3,kept
+MS,NPPB,below_1pct (5/19288 cells)
+MS,NR5A2,kept
