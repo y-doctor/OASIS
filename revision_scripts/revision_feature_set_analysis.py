@@ -125,12 +125,10 @@ def permutation_cluster_enrichment(
         obs_in_cluster = int((cluster_mask & mask_p).sum())
         obs_prop = obs_in_cluster / n_p
 
-        null_props = []
-        for _ in range(n_permutations):
-            sample_idx = rng.choice(ntc_indices, size=n_p, replace=True)
-            sample_in_cluster = np.sum(cluster_mask_arr[sample_idx])
-            null_props.append(sample_in_cluster / n_p)
-        null_props = np.asarray(null_props, dtype=float)
+        # Vectorized null: draw all permutations at once, count cluster hits per row.
+        sample_idx = rng.choice(ntc_indices, size=(n_permutations, n_p), replace=True)
+        null_counts = cluster_mask_arr[sample_idx].sum(axis=1)
+        null_props = null_counts / n_p
 
         p_enrich = (np.sum(null_props >= obs_prop) + 1) / (n_permutations + 1)
         p_deplete = (np.sum(null_props <= obs_prop) + 1) / (n_permutations + 1)
@@ -266,7 +264,6 @@ def run_panel(
     day: str,
     out_root: Path,
     n_perms: int,
-    use_pca: bool = True,
 ) -> dict:
     panel_dir = out_root / day / panel_name
     panel_dir.mkdir(parents=True, exist_ok=True)
@@ -304,17 +301,12 @@ def run_panel(
     adata_panel = adata_norm[:, detected].copy()
     sc.pp.scale(adata_panel)
 
-    if use_pca:
-        n_comps = min(20, len(detected) - 1, adata_panel.n_obs - 1)
-        sc.pp.pca(adata_panel, n_comps=n_comps, random_state=RANDOM_STATE)
-        sc.pp.neighbors(adata_panel, n_neighbors=15, random_state=RANDOM_STATE)
-    else:
-        sc.pp.neighbors(
-            adata_panel,
-            n_neighbors=15,
-            use_rep="X",
-            random_state=RANDOM_STATE,
-        )
+    sc.pp.neighbors(
+        adata_panel,
+        n_neighbors=15,
+        use_rep="X",
+        random_state=RANDOM_STATE,
+    )
     sc.tl.leiden(
         adata_panel,
         resolution=1.0,
@@ -467,11 +459,6 @@ def parse_args():
         help="Root output dir; per-day/per-panel subdirs created underneath.",
     )
     p.add_argument("--n-permutations", type=int, default=10000)
-    p.add_argument(
-        "--no-pca",
-        action="store_true",
-        help="Build kNN directly on scaled panel genes (skip PCA). Useful for small panels.",
-    )
     return p.parse_args()
 
 
@@ -503,7 +490,6 @@ def main():
             day=args.day,
             out_root=args.output_dir,
             n_perms=args.n_permutations,
-            use_pca=not args.no_pca,
         )
         rows.append(row)
 
