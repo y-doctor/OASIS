@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --job-name=diag_day4
+#SBATCH --partition=condo
+#SBATCH --qos=condo
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=4
+#SBATCH --time=00:20:00
+#SBATCH --mem=64G
+#SBATCH --account=csd852
+#SBATCH -o /tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_scripts/run_diagnose_day4.out
+#SBATCH --no-requeue
+
+eval "$(conda shell.bash hook)"
+conda activate perturb_seq_env
+
+python /tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_scripts/diagnose_day4.py

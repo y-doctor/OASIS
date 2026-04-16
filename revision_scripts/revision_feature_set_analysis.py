@@ -258,8 +258,11 @@ def ntc_zscore(adata_log, union_genes: list[str], clip: float = 10.0) -> tuple[n
 # ---------------------------------------------------------------------------
 # Main analysis
 # ---------------------------------------------------------------------------
-def run(adata, day: str, out_dir: Path, n_perms: int) -> pd.DataFrame:
-    """Run union-mode analysis. Returns a one-row summary DataFrame."""
+def run(adata, day: str, out_dir: Path, n_perms: int, scale_mode: str = "ntc") -> pd.DataFrame:
+    """Run union-mode analysis. Returns a one-row summary DataFrame.
+
+    scale_mode: "ntc" (z-score vs NTC cells) or "population" (scanpy sc.pp.scale).
+    """
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # Per-panel detection (on raw counts)
@@ -284,11 +287,26 @@ def run(adata, day: str, out_dir: Path, n_perms: int) -> pd.DataFrame:
         panel_membership[panel_name] = det
     print(f"[{day}] union: {len(union_genes)} genes")
 
-    # log-normalize full adata, then z-score against NTC
+    # log-normalize full adata, then scale (NTC-anchored or population)
     adata_log = prepare_log_adata(adata)
-    Z, kept_union = ntc_zscore(adata_log, union_genes)
+    import anndata as ad
 
-    # Update per-panel membership to only kept (post-NTC-std-filter) genes
+    if scale_mode == "ntc":
+        Z, kept_union = ntc_zscore(adata_log, union_genes)
+        adata_panel = ad.AnnData(
+            X=Z,
+            obs=adata_log.obs.copy(),
+            var=pd.DataFrame(index=kept_union),
+        )
+    elif scale_mode == "population":
+        adata_panel = adata_log[:, union_genes].copy()
+        sc.pp.scale(adata_panel)
+        kept_union = list(adata_panel.var_names)
+    else:
+        raise ValueError(f"Unknown scale_mode: {scale_mode!r}")
+    print(f"[{day}] scale_mode={scale_mode}, {len(kept_union)} genes retained")
+
+    # Update per-panel membership to only kept (post-scale-filter) genes
     kept_set = set(kept_union)
     panel_membership = {p: [g for g in genes if g in kept_set] for p, genes in panel_membership.items()}
 
@@ -298,14 +316,6 @@ def run(adata, day: str, out_dir: Path, n_perms: int) -> pd.DataFrame:
         panels_for_g = [p for p, genes in panel_membership.items() if g in genes]
         rows.append({"gene": g, "panels": ",".join(panels_for_g)})
     pd.DataFrame(rows).to_csv(out_dir / "union_genes.csv", index=False)
-
-    # Build a panel-gene AnnData using the NTC-z-scored matrix as X
-    import anndata as ad
-    adata_panel = ad.AnnData(
-        X=Z,
-        obs=adata_log.obs.copy(),
-        var=pd.DataFrame(index=kept_union),
-    )
 
     sc.pp.neighbors(
         adata_panel,
@@ -323,13 +333,17 @@ def run(adata, day: str, out_dir: Path, n_perms: int) -> pd.DataFrame:
     )
     sc.tl.umap(adata_panel, random_state=RANDOM_STATE, min_dist=0.8)
 
-    # Per-panel scores: mean of NTC-z-scored expression across panel genes (kept).
+    # Per-panel scores: mean of scaled expression across panel genes (kept).
+    X_panel = adata_panel.X
+    if sp.issparse(X_panel):
+        X_panel = X_panel.toarray()
+    X_panel = np.asarray(X_panel)
     for panel_name, genes in panel_membership.items():
         if not genes:
             adata_panel.obs[f"score_{panel_name}"] = np.nan
             continue
         idx = [kept_union.index(g) for g in genes]
-        adata_panel.obs[f"score_{panel_name}"] = Z[:, idx].mean(axis=1)
+        adata_panel.obs[f"score_{panel_name}"] = X_panel[:, idx].mean(axis=1)
 
     # Cluster sizes
     clusters = sorted(adata_panel.obs["leiden"].unique(), key=lambda c: int(c))
@@ -484,6 +498,12 @@ def parse_args():
     p.add_argument("--day", required=True, choices=["Day4", "Day6"])
     p.add_argument("--output-dir", required=True, type=Path)
     p.add_argument("--n-permutations", type=int, default=10000)
+    p.add_argument(
+        "--scale-mode",
+        choices=["ntc", "population"],
+        default="ntc",
+        help="ntc (default): z-score vs NTC cells only. population: standard sc.pp.scale.",
+    )
     return p.parse_args()
 
 
@@ -497,7 +517,7 @@ def main():
     print(f"  shape: {adata.shape}")
 
     out_dir = args.output_dir / args.day
-    summary = run(adata, day=args.day, out_dir=out_dir, n_perms=args.n_permutations)
+    summary = run(adata, day=args.day, out_dir=out_dir, n_perms=args.n_permutations, scale_mode=args.scale_mode)
 
     summary_path = out_dir / "summary.csv"
     summary.to_csv(summary_path, index=False)

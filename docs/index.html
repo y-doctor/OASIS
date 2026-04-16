@@ -361,6 +361,57 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 
 <div id="d4-composition"></div>
 
+<h2 id="day4-diagnostics">Day 4: why so many clusters?</h2>
+
+<p>Day 4 produces 76 Leiden clusters — more than Day 6 (33) despite being an earlier timepoint where cells should be more homogeneous. We ran diagnostics to separate real biological fragmentation from technical artifact.</p>
+
+<h3>No batch / channel confound</h3>
+
+<figure>
+  <img src="figures/Day4_diag_channel.png" alt="Day 4 UMAP colored by channel">
+  <figcaption><strong>Figure 5.</strong> Day 4 UMAP colored by 10x channel (4 total). All four colors mixed thoroughly within every cluster. Quantitatively: median cluster has 33.5% from its most-represented channel (ideal mixing = 25%); zero clusters are >75% single-channel; only 1.3% exceed 50% dominance. <strong>The fragmentation is not a batch effect.</strong></figcaption>
+</figure>
+
+<h3>Commitment depth splits the clusters into two populations</h3>
+
+<p>The right-hand side of the UMAP is a large mass of cells <em>below</em> NTC baseline across every marker (max z &lt; 1) — that's the purple/dark-blue region in the plot below. With 27 standard normal draws, even pure NTC-like cells would typically have a max z around 2.57; these cells are <em>depressed</em>, not just uncommitted. Most likely low-UMI / low-quality cells that clustered together because they under-express everything.</p>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day4_diag_max_z.png" alt="Day 4 UMAP colored by max panel-gene z-score per cell">
+    <figcaption><strong>Figure 6.</strong> Day 4 UMAP colored by max NTC-z across panel genes, per cell. Yellow = strong commitment on some marker; dark purple = below-baseline on all markers.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day4_diag_hist.png" alt="Day 4 max_z histogram">
+    <figcaption><strong>Figure 7.</strong> Distribution of per-cell max NTC-z. Bimodality between ~0.5 (low-quality) and ≥3 (strongly committed) is visible.</figcaption>
+  </figure>
+</div>
+
+<p>So the 76 Day 4 clusters decompose roughly as: <strong>~20–30 real committed clusters</strong> (the yellow scattered islands, each with a single dominant lineage TF) plus <strong>~30–40 low-quality-cell partitions</strong> in the dark central mass. That also explains the zero FDR-significant hits — cells of any given perturbation are spread across so many low-quality partitions that the permutation test loses power to BH correction.</p>
+
+<p class="meta"><strong>Actionable:</strong> A QC pre-filter (e.g., retain only cells with max_z &gt; 1 on some marker, or with typical UMI/gene counts) before clustering would collapse the low-quality region and likely surface Day 4 sig hits. Not applied to the current run; flagged here for the reviewer response.</p>
+
+<h2 id="robustness">Robustness: NTC z-score vs population scale</h2>
+
+<p>The published OASIS clustering uses <code>sc.pp.scale</code> (population mean/std z-score). This report uses <em>NTC-anchored</em> z-score (μ, σ from NTC cells only). To confirm the choice of normalization doesn't drive the result, we re-ran the full union-mode analysis with population scale.</p>
+
+<table>
+  <thead><tr><th>Metric</th><th>NTC-scale</th><th>Population-scale</th></tr></thead>
+  <tbody>
+    <tr><td>Day 6 — clusters</td><td class="num">33</td><td class="num">34</td></tr>
+    <tr><td>Day 6 — sig hits</td><td class="num">4 (FGF16, ADM2, CCL18, FGF4)</td><td class="num">3 (FGF16, ADM2, FGF4)</td></tr>
+    <tr><td>Day 4 — clusters</td><td class="num">76</td><td class="num">78</td></tr>
+    <tr><td>Day 4 — sig hits</td><td class="num">0</td><td class="num">0</td></tr>
+  </tbody>
+</table>
+
+<p>Scale-mode choice makes no substantive difference. The same three FGF-family hits + ADM2 emerge on Day 6 regardless; CCL18 is borderline (q ≈ 0.04) either way. Day 4 fragmentation persists at the same level, confirming it's a data property — not a consequence of NTC-anchoring.</p>
+
+<figure>
+  <img src="figures/Day6_popscale_umap_clusters.png" alt="Day 6 UMAP under population-scale normalization">
+  <figcaption><strong>Figure 8.</strong> Day 6 UMAP under population-scale normalization (<code>sc.pp.scale</code>). Same separation between committed-lineage islands and pluripotent mass as the NTC-scale version in Figure 1 — cluster IDs differ because both clusterings are stochastic-within-their-seed, but structure is equivalent.</figcaption>
+</figure>
+
 <h2 id="caveats">Caveats and methods notes</h2>
 
 <ul>
