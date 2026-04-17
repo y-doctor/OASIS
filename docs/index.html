@@ -361,7 +361,88 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 
 <div id="d4-composition"></div>
 
-<h2 id="day4-diagnostics">Day 4: why so many clusters?</h2>
+<h2 id="go-expanded">GO-expanded panels — broader biological programs</h2>
+
+<p>The Tsankov scorecard is narrow (8–26 genes per panel → 27–37 union genes detected in our data). With so few features, the clustering fragments by individual TF bursts rather than coordinated lineage programs. To check whether broader panels change the story, we rebuilt the five panels by combining Gene Ontology biological-process terms from MSigDB/Enrichr with the Tsankov seeds as canonical markers.</p>
+
+<table>
+  <thead><tr><th>Panel</th><th>Tsankov size</th><th>GO-expanded size</th><th>GO terms used</th></tr></thead>
+  <tbody>
+    <tr><td>PL</td><td class="num">8</td><td class="num">119</td><td>stem cell development, positive/negative regulation of stem cell differentiation &amp; maintenance; + canonical pluripotency markers (POU5F1, NANOG, SOX2, KLF4, MYC, LIN28A...)</td></tr>
+    <tr><td>EC</td><td class="num">21</td><td class="num">118</td><td>ectoderm development, neural tube development, neural crest cell development/differentiation</td></tr>
+    <tr><td>ME</td><td class="num">26</td><td class="num">218</td><td>mesoderm development/formation/morphogenesis, striated muscle tissue development, heart development</td></tr>
+    <tr><td>EN</td><td class="num">20</td><td class="num">75</td><td>endoderm development/formation, embryonic digestive tract development</td></tr>
+    <tr><td>MS</td><td class="num">5</td><td class="num">50</td><td>gastrulation, embryonic axis specification, regulation of gastrulation</td></tr>
+  </tbody>
+</table>
+
+<p>Full panel membership is at <a href="data/go_panels.json">data/go_panels.json</a>. Script that fetches + builds: <a href="https://github.com/y-doctor/OASIS/blob/main/revision_scripts/build_go_panels.py"><code>revision_scripts/build_go_panels.py</code></a>.</p>
+
+<h3>Results — Day 6, GO-expanded</h3>
+
+<p class="meta"><span class="pill">19 288 cells</span> &nbsp; <span class="pill">370 / 493 genes detected</span> &nbsp; <span class="pill">24 clusters</span> &nbsp; <span class="pill">10 hits in 5 clusters</span></p>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day6_go_umap_clusters.png" alt="Day 6 GO-panel UMAP by Leiden">
+    <figcaption><strong>Figure 9.</strong> Day 6 GO-panel UMAP. Fewer distinct islands than the Tsankov-panel UMAP — the richer feature set captures shared lineage programs and clusters become less fragmented.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_go_umap_score_PL.png" alt="Day 6 GO PL score">
+    <figcaption>GO-panel PL score.</figcaption>
+  </figure>
+</div>
+
+<h4>Significant hits — Day 6, GO-expanded</h4>
+
+<div id="d6-go-hits-table"></div>
+
+<p><strong>Key findings vs Tsankov:</strong></p>
+<ul>
+  <li><strong>Cluster 1 captures the FGF program.</strong> FGF4 (Δ +26%) and FGF6 (Δ +21%) now co-enrich in one cluster, reflecting that they activate a shared downstream program. With the Tsankov panel, each FGF perturbation landed in its own narrow cluster.</li>
+  <li><strong>Cluster 3 is FGF-depleted.</strong> First depletion signal we've seen: FGF3/4/6/16 all <em>below</em> NTC baseline in cluster 3 (Δ −20 to −23%). Whatever program cluster 3 represents, FGF perturbations actively push cells out of it.</li>
+  <li><strong>New hits surface:</strong> PDYN (prodynorphin), THRB (thyroid hormone receptor β), FNDC5 (irisin precursor), and D104A — none of which reached significance under Tsankov.</li>
+</ul>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day6_go_cluster_1_significant_ligands.png" alt="Cluster 1 bar">
+    <figcaption>Cluster 1 — FGF4, FGF6 co-enriched.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_go_cluster_3_significant_ligands.png" alt="Cluster 3 bar">
+    <figcaption>Cluster 3 — whole FGF family depleted.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_go_cluster_15_significant_ligands.png" alt="Cluster 15 bar">
+    <figcaption>Cluster 15 — PDYN, THRB enriched.</figcaption>
+  </figure>
+</div>
+
+<details>
+  <summary>Day 6 GO-panel dotplot + score overlays</summary>
+  <figure>
+    <img src="figures/Day6_go_panel_dotplot.png" alt="Day 6 GO dotplot">
+    <figcaption>Panel-gene dotplot (log-normalized expression, per-gene scaled) — much wider gene set per panel.</figcaption>
+  </figure>
+  <div class="grid">
+    <figure><img src="figures/Day6_go_umap_score_EC.png"><figcaption>EC score</figcaption></figure>
+    <figure><img src="figures/Day6_go_umap_score_ME.png"><figcaption>ME score</figcaption></figure>
+    <figure><img src="figures/Day6_go_umap_score_EN.png"><figcaption>EN score</figcaption></figure>
+    <figure><img src="figures/Day6_go_umap_score_MS.png"><figcaption>MS score</figcaption></figure>
+  </div>
+</details>
+
+<h3>Results — Day 4, GO-expanded</h3>
+
+<p class="meta"><span class="pill">72 767 cells</span> &nbsp; <span class="pill">343 / 493 genes detected</span> &nbsp; <span class="pill">47 clusters</span> &nbsp; <span class="pill">0 FDR-significant hits</span></p>
+
+<figure>
+  <img src="figures/Day4_go_umap_clusters.png" alt="Day 4 GO-panel UMAP">
+  <figcaption><strong>Figure 10.</strong> Day 4 GO-panel UMAP. 47 clusters (vs 76 with Tsankov) — expanded panels reduce fragmentation substantially, but Day 4 effects remain too weak for any perturbation to survive BH-FDR across ~600 tests per cluster.</figcaption>
+</figure>
+
+<h2 id="day4-diagnostics">Day 4 (Tsankov panels): why so many clusters?</h2>
 
 <p>Day 4 produces 76 Leiden clusters — more than Day 6 (33) despite being an earlier timepoint where cells should be more homogeneous. We ran diagnostics to separate real biological fragmentation from technical artifact.</p>
 
@@ -556,6 +637,7 @@ async function buildSummary(csvPath, clustersId, hitsId) {
   const d4 = await buildHitsTable('data/Day4_significant_hits.csv', 'd4-hits-table');
   await buildBarGrid(d4, 'Day4', 'd4-bars');
   await buildComposition('data/Day4_all_enrichment_stats.csv', 'd4-composition', 5);
+  await buildHitsTable('data/Day6_go_significant_hits.csv', 'd6-go-hits-table');
 })();
 </script>
 

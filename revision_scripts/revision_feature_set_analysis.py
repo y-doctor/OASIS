@@ -18,6 +18,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import json
 from pathlib import Path
 
 import matplotlib
@@ -49,6 +50,23 @@ TSANKOV_PANELS: dict[str, list[str]] = {
     ],
     "MS": ["FGF4", "T", "GDF3", "NPPB", "NR5A2"],
 }
+
+GO_PANELS_PATH = Path(__file__).parent / "go_panels.json"
+
+
+def load_panels(source: str) -> dict[str, list[str]]:
+    """Return the panel dict for the requested source: 'tsankov' or 'go'."""
+    if source == "tsankov":
+        return TSANKOV_PANELS
+    if source == "go":
+        if not GO_PANELS_PATH.exists():
+            raise FileNotFoundError(
+                f"{GO_PANELS_PATH} not found. Run build_go_panels.py first."
+            )
+        obj = json.loads(GO_PANELS_PATH.read_text())
+        return obj["panels"]
+    raise ValueError(f"Unknown panel source: {source!r}")
+
 
 NTC_LABEL = "NTC"
 PERTURBATION_KEY = "perturbation"
@@ -258,17 +276,30 @@ def ntc_zscore(adata_log, union_genes: list[str], clip: float = 10.0) -> tuple[n
 # ---------------------------------------------------------------------------
 # Main analysis
 # ---------------------------------------------------------------------------
-def run(adata, day: str, out_dir: Path, n_perms: int, scale_mode: str = "ntc") -> pd.DataFrame:
+def run(
+    adata,
+    day: str,
+    out_dir: Path,
+    n_perms: int,
+    scale_mode: str = "ntc",
+    cluster_on: str = "genes",
+    panels: dict[str, list[str]] | None = None,
+) -> pd.DataFrame:
     """Run union-mode analysis. Returns a one-row summary DataFrame.
 
     scale_mode: "ntc" (z-score vs NTC cells) or "population" (scanpy sc.pp.scale).
+    cluster_on: "genes" (cluster on the ~N-dim scaled union-gene matrix) or
+        "scores" (cluster on a 5-dim per-panel score matrix — much coarser).
+    panels: lineage -> gene-symbol list. Defaults to TSANKOV_PANELS.
     """
+    if panels is None:
+        panels = TSANKOV_PANELS
     out_dir.mkdir(parents=True, exist_ok=True)
 
     # Per-panel detection (on raw counts)
     per_panel_detected: dict[str, list[str]] = {}
     dropped_rows = []
-    for panel_name, symbols in TSANKOV_PANELS.items():
+    for panel_name, symbols in panels.items():
         det, drop_df = detected_panel_genes(adata, symbols)
         per_panel_detected[panel_name] = det
         drop_df.insert(0, "panel", panel_name)
@@ -317,33 +348,63 @@ def run(adata, day: str, out_dir: Path, n_perms: int, scale_mode: str = "ntc") -
         rows.append({"gene": g, "panels": ",".join(panels_for_g)})
     pd.DataFrame(rows).to_csv(out_dir / "union_genes.csv", index=False)
 
+    # Panel scores (pre-clustering): mean of scaled expression across each panel's kept genes.
+    X_scaled = adata_panel.X
+    if sp.issparse(X_scaled):
+        X_scaled = X_scaled.toarray()
+    X_scaled = np.asarray(X_scaled, dtype=np.float32)
+    panel_names_order = [p for p in panels if panel_membership[p]]
+    scores_matrix = np.zeros((X_scaled.shape[0], len(panel_names_order)), dtype=np.float32)
+    for i, panel_name in enumerate(panel_names_order):
+        idx = [kept_union.index(g) for g in panel_membership[panel_name]]
+        scores_matrix[:, i] = X_scaled[:, idx].mean(axis=1)
+
+    # Choose the representation for kNN/Leiden/UMAP.
+    if cluster_on == "genes":
+        cluster_adata = adata_panel
+    elif cluster_on == "scores":
+        cluster_adata = ad.AnnData(
+            X=scores_matrix,
+            obs=adata_panel.obs.copy(),
+            var=pd.DataFrame(index=panel_names_order),
+        )
+    else:
+        raise ValueError(f"Unknown cluster_on: {cluster_on!r}")
+    print(f"[{day}] cluster_on={cluster_on}, kNN feature dim = {cluster_adata.shape[1]}")
+
     sc.pp.neighbors(
-        adata_panel,
+        cluster_adata,
         n_neighbors=30,
         use_rep="X",
         random_state=RANDOM_STATE,
     )
     sc.tl.leiden(
-        adata_panel,
+        cluster_adata,
         resolution=1.0,
         n_iterations=2,
         flavor="igraph",
         directed=False,
         random_state=RANDOM_STATE,
     )
-    sc.tl.umap(adata_panel, random_state=RANDOM_STATE, min_dist=0.8)
+    sc.tl.umap(cluster_adata, random_state=RANDOM_STATE, min_dist=0.8)
 
-    # Per-panel scores: mean of scaled expression across panel genes (kept).
-    X_panel = adata_panel.X
-    if sp.issparse(X_panel):
-        X_panel = X_panel.toarray()
-    X_panel = np.asarray(X_panel)
-    for panel_name, genes in panel_membership.items():
-        if not genes:
+    # If we clustered on scores, copy obsm["X_umap"] and obs["leiden"] back to adata_panel
+    # so that downstream code (which uses adata_panel for gene-level dotplot) still works.
+    adata_panel.obs["leiden"] = cluster_adata.obs["leiden"].values
+    adata_panel.obsm["X_umap"] = cluster_adata.obsm["X_umap"]
+
+    # Attach per-panel scores to both adatas for score-overlay UMAPs.
+    for i, panel_name in enumerate(panel_names_order):
+        adata_panel.obs[f"score_{panel_name}"] = scores_matrix[:, i]
+        cluster_adata.obs[f"score_{panel_name}"] = scores_matrix[:, i]
+    # For empty panels (no detected genes), populate NaN score columns
+    for panel_name in panels:
+        if panel_name not in panel_names_order:
             adata_panel.obs[f"score_{panel_name}"] = np.nan
-            continue
-        idx = [kept_union.index(g) for g in genes]
-        adata_panel.obs[f"score_{panel_name}"] = X_panel[:, idx].mean(axis=1)
+            cluster_adata.obs[f"score_{panel_name}"] = np.nan
+
+    # All downstream plots/tables come from adata_panel (which now carries the cluster-on
+    # representation's UMAP + leiden labels).
 
     # Cluster sizes
     clusters = sorted(adata_panel.obs["leiden"].unique(), key=lambda c: int(c))
@@ -369,7 +430,7 @@ def run(adata, day: str, out_dir: Path, n_perms: int, scale_mode: str = "ntc") -
     plt.close(fig)
 
     # UMAPs: per-panel scores (one PDF each)
-    for panel_name in TSANKOV_PANELS:
+    for panel_name in panels:
         fig, ax = plt.subplots(figsize=(6, 6))
         sc.pl.umap(
             adata_panel,
@@ -387,7 +448,7 @@ def run(adata, day: str, out_dir: Path, n_perms: int, scale_mode: str = "ntc") -
     # Dotplot: union genes grouped by panel × leiden, log-normalized expression.
     adata_norm_local = adata_log[:, kept_union].copy()
     adata_norm_local.obs["leiden"] = adata_panel.obs["leiden"].values
-    var_group = {p: panel_membership[p] for p in TSANKOV_PANELS if panel_membership[p]}
+    var_group = {p: panel_membership[p] for p in panels if panel_membership[p]}
     fig = sc.pl.dotplot(
         adata_norm_local,
         var_names=var_group,
@@ -478,8 +539,8 @@ def run(adata, day: str, out_dir: Path, n_perms: int, scale_mode: str = "ntc") -
         [
             {
                 "day": day,
-                "n_input_total": sum(len(s) for s in TSANKOV_PANELS.values()),
-                "n_union_input": len(set(g for s in TSANKOV_PANELS.values() for g in s)),
+                "n_input_total": sum(len(s) for s in panels.values()),
+                "n_union_input": len(set(g for s in panels.values() for g in s)),
                 "n_union_detected": len(kept_union),
                 "n_cells": adata_panel.n_obs,
                 "n_clusters": len(clusters),
@@ -504,6 +565,18 @@ def parse_args():
         default="ntc",
         help="ntc (default): z-score vs NTC cells only. population: standard sc.pp.scale.",
     )
+    p.add_argument(
+        "--cluster-on",
+        choices=["genes", "scores"],
+        default="genes",
+        help="genes (default): cluster on the union-gene matrix. scores: cluster on 5 per-panel scores (much coarser).",
+    )
+    p.add_argument(
+        "--panels",
+        choices=["tsankov", "go"],
+        default="tsankov",
+        help="tsankov (default): original 80-gene Tsankov 2015 scorecard. go: expanded GO-term + seed panels (see build_go_panels.py).",
+    )
     return p.parse_args()
 
 
@@ -517,7 +590,16 @@ def main():
     print(f"  shape: {adata.shape}")
 
     out_dir = args.output_dir / args.day
-    summary = run(adata, day=args.day, out_dir=out_dir, n_perms=args.n_permutations, scale_mode=args.scale_mode)
+    panels = load_panels(args.panels)
+    summary = run(
+        adata,
+        day=args.day,
+        out_dir=out_dir,
+        n_perms=args.n_permutations,
+        scale_mode=args.scale_mode,
+        cluster_on=args.cluster_on,
+        panels=panels,
+    )
 
     summary_path = out_dir / "summary.csv"
     summary.to_csv(summary_path, index=False)

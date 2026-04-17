@@ -1,0 +1,581 @@
+panel,gene,reason
+PL,ACTL6A,kept
+PL,ACTL6B,kept
+PL,ARID1A,kept
+PL,ARID4A,kept
+PL,ARID4B,kept
+PL,BCL7A,kept
+PL,BCL7B,kept
+PL,BCL7C,kept
+PL,BICRA,kept
+PL,BICRAL,kept
+PL,BRD9,kept
+PL,BRMS1,kept
+PL,BRMS1L,kept
+PL,CITED1,below_1pct (483/72767 cells)
+PL,CXCL5,kept
+PL,CYP26C1,below_1pct (17/72767 cells)
+PL,DNMT3B,kept
+PL,DPF2,kept
+PL,DPPA3,kept
+PL,DPPA4,kept
+PL,DPPA5,kept
+PL,EPCAM,kept
+PL,ESRRB,kept
+PL,FAM172A,kept
+PL,FERMT2,kept
+PL,FGF2,kept
+PL,FOXC1,below_1pct (415/72767 cells)
+PL,GJA1,kept
+PL,GSK3B,kept
+PL,HDAC1,kept
+PL,HDAC2,kept
+PL,HES1,kept
+PL,HES5,below_1pct (134/72767 cells)
+PL,HESX1,kept
+PL,HMGA2,kept
+PL,HNRNPU,kept
+PL,HOXB4,below_1pct (1/72767 cells)
+PL,IDO1,kept
+PL,ING1,kept
+PL,ING2,kept
+PL,JAG1,kept
+PL,KAT7,kept
+PL,KBTBD8,kept
+PL,KDM1A,kept
+PL,KLF4,kept
+PL,KLHL12,kept
+PL,L1TD1,kept
+PL,LCK,kept
+PL,LEFTY1,kept
+PL,LEFTY2,kept
+PL,LIN28A,kept
+PL,LIN28B,kept
+PL,LOXL2,kept
+PL,LTBP2,below_1pct (143/72767 cells)
+PL,MTCH2,kept
+PL,MYC,kept
+PL,N4BP2L2,kept
+PL,NANOG,kept
+PL,NCOA3,kept
+PL,NELFB,kept
+PL,NKX2-5,below_1pct (25/72767 cells)
+PL,NODAL,kept
+PL,NOLC1,kept
+PL,NOTCH1,kept
+PL,NRG1,kept
+PL,NUDT21,kept
+PL,OGT,kept
+PL,PDCD2,kept
+PL,PDCD6,kept
+PL,PEF1,kept
+PL,PHF10,kept
+PL,POU5F1,kept
+PL,PTN,kept
+PL,PTPRC,below_1pct (73/72767 cells)
+PL,RBBP4,kept
+PL,RBBP7,kept
+PL,RBM24,below_1pct (82/72767 cells)
+PL,REST,kept
+PL,SAP30,kept
+PL,SAP30L,kept
+PL,SF3B3,kept
+PL,SHH,below_1pct (9/72767 cells)
+PL,SIN3A,kept
+PL,SINHCAF,kept
+PL,SIRT6,kept
+PL,SMARCA2,kept
+PL,SMARCA4,kept
+PL,SMARCB1,kept
+PL,SMARCC1,kept
+PL,SMARCD1,kept
+PL,SMARCE1,kept
+PL,SNAI2,below_1pct (224/72767 cells)
+PL,SOX11,kept
+PL,SOX2,kept
+PL,SOX5,kept
+PL,SOX6,kept
+PL,SOX8,kept
+PL,SOX9,kept
+PL,SP7,below_1pct (4/72767 cells)
+PL,SS18,kept
+PL,SUDS3,kept
+PL,TACSTD2,below_1pct (539/72767 cells)
+PL,TAPT1,kept
+PL,TBX5,below_1pct (40/72767 cells)
+PL,TCF15,kept
+PL,TCOF1,kept
+PL,TDGF1,kept
+PL,TERT,kept
+PL,TET1,kept
+PL,TGFB2,kept
+PL,THPO,below_1pct (118/72767 cells)
+PL,TRIM22,kept
+PL,UTF1,kept
+PL,WNT7A,below_1pct (7/72767 cells)
+PL,WNT9B,below_1pct (63/72767 cells)
+PL,YTHDF2,kept
+PL,ZFP36L2,kept
+PL,ZFP42,kept
+PL,ZNF706,kept
+EC,ARL13B,kept
+EC,BCL10,kept
+EC,CDH2,kept
+EC,CDH9,kept
+EC,CELSR1,kept
+EC,COBL,kept
+EC,COL2A1,kept
+EC,CORO1C,kept
+EC,CSRP3,below_1pct (11/72767 cells)
+EC,CYP26C1,below_1pct (17/72767 cells)
+EC,DACT1,kept
+EC,DEAF1,kept
+EC,DMBX1,below_1pct (429/72767 cells)
+EC,DRD4,kept
+EC,DVL1,kept
+EC,DVL2,kept
+EC,DYNLL1,kept
+EC,EDA2R,kept
+EC,EN1,below_1pct (10/72767 cells)
+EC,ERBB4,kept
+EC,FAM172A,kept
+EC,FBXL17,kept
+EC,FUZ,kept
+EC,GDNF,below_1pct (196/72767 cells)
+EC,GRHL2,kept
+EC,GRHL3,below_1pct (380/72767 cells)
+EC,HES5,below_1pct (134/72767 cells)
+EC,HTR2B,below_1pct (154/72767 cells)
+EC,IFT122,kept
+EC,INTU,kept
+EC,ITGA6,kept
+EC,ITGAM,below_1pct (78/72767 cells)
+EC,KBTBD8,kept
+EC,KLHL12,kept
+EC,KRT6B,missing
+EC,LHX1,below_1pct (417/72767 cells)
+EC,LMX1A,below_1pct (59/72767 cells)
+EC,LRP2,below_1pct (506/72767 cells)
+EC,LRP6,kept
+EC,MAP2,kept
+EC,MEF2C,kept
+EC,MTHFD1,kept
+EC,MTHFD1L,kept
+EC,MTHFR,kept
+EC,MYO3B,kept
+EC,NELL1,kept
+EC,NOLC1,kept
+EC,NOS2,below_1pct (367/72767 cells)
+EC,NR2F1,below_1pct (10/72767 cells)
+EC,NR2F2,below_1pct (67/72767 cells)
+EC,NRG1,kept
+EC,NRTN,kept
+EC,OLFM3,kept
+EC,OTUD5,kept
+EC,PAPLN,kept
+EC,PAX2,below_1pct (34/72767 cells)
+EC,PAX3,below_1pct (69/72767 cells)
+EC,PAX6,below_1pct (101/72767 cells)
+EC,PDCD6,kept
+EC,PEF1,kept
+EC,PHACTR4,kept
+EC,PKD1,kept
+EC,PKD2,kept
+EC,PLXNB2,kept
+EC,POU4F1,below_1pct (195/72767 cells)
+EC,PRICKLE1,kept
+EC,PROX1,kept
+EC,PTCH1,kept
+EC,RADIL,kept
+EC,SCRIB,kept
+EC,SDC2,kept
+EC,SEMA3A,kept
+EC,SEMA3B,kept
+EC,SEMA3C,kept
+EC,SEMA3D,kept
+EC,SEMA3E,kept
+EC,SEMA3F,kept
+EC,SEMA3G,below_1pct (285/72767 cells)
+EC,SEMA4A,kept
+EC,SEMA4B,kept
+EC,SEMA4C,kept
+EC,SEMA4D,kept
+EC,SEMA4F,below_1pct (466/72767 cells)
+EC,SEMA4G,kept
+EC,SEMA5A,kept
+EC,SEMA5B,kept
+EC,SEMA6A,kept
+EC,SEMA6B,kept
+EC,SEMA6C,kept
+EC,SEMA6D,kept
+EC,SEMA7A,kept
+EC,SHH,below_1pct (9/72767 cells)
+EC,SKI,kept
+EC,SLC39A12,below_1pct (35/72767 cells)
+EC,SMURF1,kept
+EC,SNAI2,below_1pct (224/72767 cells)
+EC,SOX1,below_1pct (126/72767 cells)
+EC,SOX10,below_1pct (336/72767 cells)
+EC,SOX8,kept
+EC,STIL,kept
+EC,STX2,kept
+EC,TAPT1,kept
+EC,TBX1,kept
+EC,TCOF1,kept
+EC,TGFB1,kept
+EC,TGFB2,kept
+EC,TRIM71,kept
+EC,TRPM8,below_1pct (72/72767 cells)
+EC,TSC2,kept
+EC,VANGL2,kept
+EC,VASP,kept
+EC,VAX2,below_1pct (44/72767 cells)
+EC,WDPCP,kept
+EC,WNT1,below_1pct (3/72767 cells)
+EC,WNT8A,below_1pct (25/72767 cells)
+EC,ZBTB16,below_1pct (128/72767 cells)
+EC,ZBTB7B,below_1pct (622/72767 cells)
+EC,ZNF358,kept
+ME,ABCA4,below_1pct (82/72767 cells)
+ME,ACVRL1,below_1pct (15/72767 cells)
+ME,ADAP2,below_1pct (574/72767 cells)
+ME,AKAP13,kept
+ME,ALOX15,below_1pct (194/72767 cells)
+ME,ALPK2,below_1pct (185/72767 cells)
+ME,ALPK3,kept
+ME,APELA,kept
+ME,APLN,below_1pct (213/72767 cells)
+ME,APLNR,below_1pct (13/72767 cells)
+ME,BCOR,kept
+ME,BMP10,below_1pct (1/72767 cells)
+ME,BMP2,kept
+ME,BMP4,kept
+ME,BMP5,below_1pct (50/72767 cells)
+ME,BMP7,kept
+ME,BMPR2,kept
+ME,BORCS8,kept
+ME,BORCS8-MEF2B,missing
+ME,BTK,below_1pct (313/72767 cells)
+ME,BVES,below_1pct (645/72767 cells)
+ME,CACNA1C,kept
+ME,CACYBP,kept
+ME,CASP8,kept
+ME,CCM2,kept
+ME,CCM2L,kept
+ME,CDH5,below_1pct (51/72767 cells)
+ME,CDKN1A,kept
+ME,CDKN1B,kept
+ME,CDX2,below_1pct (22/72767 cells)
+ME,CER1,kept
+ME,CHD7,kept
+ME,CITED2,kept
+ME,COL3A1,below_1pct (13/72767 cells)
+ME,COLEC10,below_1pct (78/72767 cells)
+ME,CRB2,kept
+ME,CRELD1,kept
+ME,CRIP1,kept
+ME,CSRP3,below_1pct (11/72767 cells)
+ME,CXADR,kept
+ME,DAND5,below_1pct (143/72767 cells)
+ME,DNAAF4,kept
+ME,DVL1,kept
+ME,DVL2,kept
+ME,DYNLL1,kept
+ME,DZIP1,kept
+ME,ECE1,kept
+ME,EEF1AKMT4-ECE2,missing
+ME,EOMES,below_1pct (264/72767 cells)
+ME,EPHB4,kept
+ME,ERBB3,kept
+ME,ERBB4,kept
+ME,ESM1,below_1pct (4/72767 cells)
+ME,FBN1,kept
+ME,FCN3,below_1pct (36/72767 cells)
+ME,FGF12,kept
+ME,FGF8,kept
+ME,FKBP1A,kept
+ME,FLRT2,kept
+ME,FLRT3,below_1pct (366/72767 cells)
+ME,FN1,kept
+ME,FOXA1,below_1pct (9/72767 cells)
+ME,FOXC1,below_1pct (415/72767 cells)
+ME,FOXC2,below_1pct (29/72767 cells)
+ME,FOXF1,below_1pct (2/72767 cells)
+ME,FOXL1,below_1pct (4/72767 cells)
+ME,GATA4,below_1pct (119/72767 cells)
+ME,GATA5,below_1pct (354/72767 cells)
+ME,GDF11,kept
+ME,GJA1,kept
+ME,GJA5,below_1pct (190/72767 cells)
+ME,GLI2,kept
+ME,GPC3,kept
+ME,HAND1,below_1pct (8/72767 cells)
+ME,HAND2,below_1pct (9/72767 cells)
+ME,HCK,below_1pct (194/72767 cells)
+ME,HDAC9,kept
+ME,HEG1,kept
+ME,HES7,below_1pct (104/72767 cells)
+ME,HEY1,below_1pct (420/72767 cells)
+ME,HMGA2,kept
+ME,HOPX,below_1pct (38/72767 cells)
+ME,HTR2B,below_1pct (154/72767 cells)
+ME,ID2,kept
+ME,IFT122,kept
+ME,IKZF1,kept
+ME,IKZF3,kept
+ME,IL6ST,kept
+ME,INSR,kept
+ME,ISL1,below_1pct (251/72767 cells)
+ME,ITGA2,kept
+ME,ITGA3,kept
+ME,ITGA8,below_1pct (59/72767 cells)
+ME,ITGB1,kept
+ME,ITGB3,below_1pct (50/72767 cells)
+ME,ITGB4,kept
+ME,JAK2,kept
+ME,KAT2A,kept
+ME,KAT2B,kept
+ME,KDM6A,kept
+ME,KDM6B,kept
+ME,KLF5,below_1pct (624/72767 cells)
+ME,LDB3,below_1pct (407/72767 cells)
+ME,LEFTY1,kept
+ME,MEF2A,kept
+ME,MEF2C,kept
+ME,MEF2D,kept
+ME,MEGF8,kept
+ME,MESD,kept
+ME,MESP1,below_1pct (359/72767 cells)
+ME,MESP2,below_1pct (387/72767 cells)
+ME,MEST,kept
+ME,MICAL2,below_1pct (637/72767 cells)
+ME,MIXL1,kept
+ME,MKKS,kept
+ME,MMP23A,missing
+ME,MSGN1,below_1pct (1/72767 cells)
+ME,MTHFD1,kept
+ME,MYBPC3,below_1pct (17/72767 cells)
+ME,MYH6,below_1pct (15/72767 cells)
+ME,MYH7,below_1pct (7/72767 cells)
+ME,MYL2,below_1pct (12/72767 cells)
+ME,MYL7,kept
+ME,MYOCD,kept
+ME,NCOA6,kept
+ME,NDRG4,kept
+ME,NDUFV2,kept
+ME,NF1,kept
+ME,NIPBL,kept
+ME,NKX2-5,below_1pct (25/72767 cells)
+ME,NKX2-6,below_1pct (22/72767 cells)
+ME,NOTCH1,kept
+ME,NTRK3,kept
+ME,ODAM,below_1pct (4/72767 cells)
+ME,OXSR1,kept
+ME,PCSK5,kept
+ME,PDGFB,kept
+ME,PDGFRA,kept
+ME,PDLIM1,kept
+ME,PDLIM2,kept
+ME,PDLIM3,kept
+ME,PDLIM4,kept
+ME,PDLIM5,kept
+ME,PDLIM7,kept
+ME,PGM5,below_1pct (88/72767 cells)
+ME,PHIP,kept
+ME,PKD1,kept
+ME,PKD2,kept
+ME,PKP2,kept
+ME,PLCE1,kept
+ME,PLVAP,below_1pct (47/72767 cells)
+ME,POLR2D,kept
+ME,POPDC2,below_1pct (196/72767 cells)
+ME,POPDC3,kept
+ME,POU4F1,below_1pct (195/72767 cells)
+ME,POU4F2,below_1pct (6/72767 cells)
+ME,POU6F1,kept
+ME,PRICKLE4,below_1pct (106/72767 cells)
+ME,PRMT1,kept
+ME,PTEN,kept
+ME,PTK2,kept
+ME,PTPN11,kept
+ME,RAMP2,kept
+ME,RGS4,below_1pct (229/72767 cells)
+ME,SALL1,kept
+ME,SCUBE1,kept
+ME,SCX,kept
+ME,SECTM1,below_1pct (51/72767 cells)
+ME,SGCD,kept
+ME,SGCG,below_1pct (127/72767 cells)
+ME,SGCZ,below_1pct (543/72767 cells)
+ME,SH3PXD2B,kept
+ME,SHH,below_1pct (9/72767 cells)
+ME,SMAD2,kept
+ME,SMG9,kept
+ME,SMYD4,kept
+ME,SNAI1,kept
+ME,SNAI2,below_1pct (224/72767 cells)
+ME,SOX17,below_1pct (9/72767 cells)
+ME,SOX18,below_1pct (79/72767 cells)
+ME,SOX4,kept
+ME,SOX9,kept
+ME,SRF,kept
+ME,SRI,kept
+ME,SST,below_1pct (125/72767 cells)
+ME,STRA6,kept
+ME,SYNPO2L,below_1pct (178/72767 cells)
+ME,TAB2,kept
+ME,TAFAZZIN,kept
+ME,TBX1,kept
+ME,TBX19,below_1pct (491/72767 cells)
+ME,TBX2,below_1pct (5/72767 cells)
+ME,TBX20,below_1pct (69/72767 cells)
+ME,TBX3,kept
+ME,TBX5,below_1pct (40/72767 cells)
+ME,TBX6,below_1pct (179/72767 cells)
+ME,TBXT,below_1pct (106/72767 cells)
+ME,TCAP,below_1pct (78/72767 cells)
+ME,TCF15,kept
+ME,TCF25,kept
+ME,TDGF1,kept
+ME,TEK,kept
+ME,TGFB1,kept
+ME,TGFB2,kept
+ME,TGFBR1,kept
+ME,TGFBR2,kept
+ME,TGFBR3,kept
+ME,TH,below_1pct (75/72767 cells)
+ME,TIE1,kept
+ME,TM4SF1,below_1pct (282/72767 cells)
+ME,TNNI3,kept
+ME,TSC2,kept
+ME,UTY,kept
+ME,VEGFA,kept
+ME,WT1,below_1pct (24/72767 cells)
+ME,ZDHHC16,kept
+ME,ZFPM1,kept
+ME,ZFPM2,kept
+EN,CABP7,below_1pct (90/72767 cells)
+EN,CDH20,kept
+EN,CLDN1,kept
+EN,COL12A1,below_1pct (667/72767 cells)
+EN,COL4A2,kept
+EN,COL6A1,kept
+EN,COL7A1,kept
+EN,COL8A1,kept
+EN,CPLX2,kept
+EN,DUSP1,kept
+EN,DUSP2,kept
+EN,DUSP4,kept
+EN,DUSP5,kept
+EN,ELAVL3,below_1pct (294/72767 cells)
+EN,EOMES,below_1pct (264/72767 cells)
+EN,FGFR2,kept
+EN,FN1,kept
+EN,FOXA1,below_1pct (9/72767 cells)
+EN,FOXA2,below_1pct (582/72767 cells)
+EN,FOXF1,below_1pct (2/72767 cells)
+EN,FOXP2,below_1pct (564/72767 cells)
+EN,GATA4,below_1pct (119/72767 cells)
+EN,GATA6,below_1pct (40/72767 cells)
+EN,GLI2,kept
+EN,GLI3,kept
+EN,HHEX,below_1pct (619/72767 cells)
+EN,HMGA2,kept
+EN,HMP19,missing
+EN,HNF4A,below_1pct (53/72767 cells)
+EN,HOXC11,missing
+EN,ID2,kept
+EN,INHBA,kept
+EN,ITGA4,kept
+EN,ITGA5,kept
+EN,ITGA7,kept
+EN,ITGAV,kept
+EN,ITGB2,below_1pct (81/72767 cells)
+EN,ITGB5,kept
+EN,KIF16B,kept
+EN,LAMA3,kept
+EN,LAMB1,kept
+EN,LAMB3,below_1pct (81/72767 cells)
+EN,LAMC1,kept
+EN,LEFTY1,kept
+EN,LEFTY2,kept
+EN,LHX1,below_1pct (417/72767 cells)
+EN,MIXL1,kept
+EN,MMP14,kept
+EN,MMP15,kept
+EN,MMP2,kept
+EN,MMP8,missing
+EN,MMP9,kept
+EN,NIPBL,kept
+EN,NODAL,kept
+EN,PCSK5,kept
+EN,PDGFRA,kept
+EN,PHOX2B,below_1pct (2/72767 cells)
+EN,PKDCC,kept
+EN,POU3F3,below_1pct (19/72767 cells)
+EN,RARB,kept
+EN,RARRES2,kept
+EN,RBPMS2,kept
+EN,RXRG,below_1pct (21/72767 cells)
+EN,SALL1,kept
+EN,SETD2,kept
+EN,SIX2,below_1pct (38/72767 cells)
+EN,SOX11,kept
+EN,SOX17,below_1pct (9/72767 cells)
+EN,SOX7,below_1pct (527/72767 cells)
+EN,STRA6,kept
+EN,TBX20,below_1pct (69/72767 cells)
+EN,TCF21,below_1pct (40/72767 cells)
+EN,TGFB2,kept
+EN,TNF,below_1pct (6/72767 cells)
+EN,VTN,below_1pct (26/72767 cells)
+MS,CER1,kept
+MS,CLASP2,kept
+MS,CRB2,kept
+MS,CXXC4,kept
+MS,DAG1,kept
+MS,EOMES,below_1pct (264/72767 cells)
+MS,FGF4,below_1pct (321/72767 cells)
+MS,FGF8,kept
+MS,FOXA2,below_1pct (582/72767 cells)
+MS,FZD5,kept
+MS,GDF3,kept
+MS,GPC3,kept
+MS,GSC,below_1pct (67/72767 cells)
+MS,HOXD8,below_1pct (1/72767 cells)
+MS,LHX1,below_1pct (417/72767 cells)
+MS,LMBRD1,kept
+MS,LRP5,kept
+MS,MEGF8,kept
+MS,MESP1,below_1pct (359/72767 cells)
+MS,MESP2,below_1pct (387/72767 cells)
+MS,MIXL1,kept
+MS,MKKS,kept
+MS,NAT8B,missing
+MS,NPHP3,kept
+MS,NPPB,below_1pct (176/72767 cells)
+MS,NR4A3,below_1pct (70/72767 cells)
+MS,NR5A2,kept
+MS,OTX2,kept
+MS,OXSR1,kept
+MS,PHLDB1,kept
+MS,PHLDB2,kept
+MS,POGLUT1,kept
+MS,PTCH1,kept
+MS,RACK1,kept
+MS,RIPPLY1,missing
+MS,RIPPLY2,below_1pct (537/72767 cells)
+MS,SCX,kept
+MS,SMAD2,kept
+MS,SMAD6,kept
+MS,STIL,kept
+MS,T,missing
+MS,TASOR,kept
+MS,TBX3,kept
+MS,TBXT,below_1pct (106/72767 cells)
+MS,TDGF1,kept
+MS,TENM4,kept
+MS,UGDH,kept
+MS,WNT1,below_1pct (3/72767 cells)
+MS,WNT7A,below_1pct (7/72767 cells)
+MS,WNT8B,below_1pct (15/72767 cells)

@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH --job-name=sanity_zscore
+#SBATCH --partition=condo
+#SBATCH --qos=condo
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=2
+#SBATCH --time=00:10:00
+#SBATCH --mem=32G
+#SBATCH --account=csd852
+#SBATCH -o /tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_scripts/run_sanity_check.out
+#SBATCH --no-requeue
+
+eval "$(conda shell.bash hook)"
+conda activate perturb_seq_env
+python /tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_scripts/sanity_check_zscore.py

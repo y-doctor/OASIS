@@ -1,0 +1,37 @@
+#!/bin/bash
+#SBATCH --job-name=revfsa_scores
+#SBATCH --partition=condo
+#SBATCH --qos=condo
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=8
+#SBATCH --time=02:00:00
+#SBATCH --mem=128G
+#SBATCH --account=csd852
+#SBATCH -o /tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_scripts/run_Day4_Day6_scores.out
+#SBATCH --mail-type=ALL
+#SBATCH --mail-user=ydoctor@ucsd.edu
+#SBATCH --no-requeue
+
+set -euo pipefail
+
+eval "$(conda shell.bash hook)"
+conda activate perturb_seq_env
+
+SCRIPT=/tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_scripts/revision_feature_set_analysis.py
+OUT=/tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/revision_figures/feature_set_analysis_scores
+H5_DIR=/tscc/projects/ps-malilab/ydoctor/Ligandome_Screens/Perturb_Seq_Analysis/anndata_objects
+
+echo "=== Day6 cluster-on=scores ==="
+python "$SCRIPT" --cluster-on scores \
+    --h5ad "$H5_DIR/Day6_Ligandome_Aggregate_Post_Energy_Test.h5ad" \
+    --day Day6 \
+    --output-dir "$OUT"
+
+echo
+echo "=== Day4 cluster-on=scores ==="
+python "$SCRIPT" --cluster-on scores \
+    --h5ad "$H5_DIR/Day4_Ligandome_Aggregate_Post_Energy_Test.h5ad" \
+    --day Day4 \
+    --output-dir "$OUT"
+
+echo DONE
