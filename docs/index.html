@@ -199,10 +199,49 @@
 </blockquote>
 
 <div class="tldr">
-  <p><strong>TL;DR.</strong> The clustering structure depends on which genes you cluster on — it's a feature of the design, not a bug. Re-clustering the Day 4 and Day 6 OASIS Perturb-seq datasets on the union of five Tsankov 2015 lineage panels (PL, EC, ME, EN, MS — pluripotency, ectoderm, mesoderm, endoderm, mesendoderm) reveals <strong>~33 distinct partial-lineage states on Day 6</strong>, each defined by a single dominant lineage TF on top of a still-pluripotent core. Permutation enrichment (10 000 perms, BH-FDR α=0.05, NTC null) identifies <strong>FGF16, FGF4, ADM2, and CCL18</strong> as the strongest cluster-defining ligand perturbations on Day 6. Day 4 has weaker but consistent signals.</p>
+  <p><strong>TL;DR.</strong> The reviewer asks whether the Perturb-seq UMAP clusters are "well separated" and whether other categories enrich in other clusters. We show that this framing implicitly assumes one canonical clustering exists — it doesn't. <strong>Which perturbations enrich is a function of the gene-set lens you cluster on.</strong> Three different biological lenses (Tsankov lineage scorecard, GO developmental programs, KEGG signaling pathways) produce three different Leiden clusterings of the same Day 6 cells, each revealing a different — biologically coherent — set of significant ligand perturbations.</p>
+  <p>Day 6 hit summary across the three lenses:</p>
+  <table style="margin-top:.5rem;margin-bottom:0">
+    <thead><tr><th>Lens</th><th>Genes used</th><th>Clusters</th><th>Hits</th><th>Character</th></tr></thead>
+    <tbody>
+      <tr><td>Tsankov lineage TFs</td><td class="num">37</td><td class="num">33</td><td class="num">4</td><td>TF-burst: FGF16, FGF4, ADM2, CCL18</td></tr>
+      <tr><td>GO: developmental programs</td><td class="num">370</td><td class="num">24</td><td class="num">10</td><td>Program: FGF family co-enrich/deplete + PDYN, THRB, FNDC5, D104A</td></tr>
+      <tr><td>KEGG: WNT/TGFB/NOTCH/MAPK</td><td class="num">458</td><td class="num">21</td><td class="num">8</td><td>Pathway: 5 FGFs sharply co-enriched (Δ up to +62%, cluster 9)</td></tr>
+    </tbody>
+  </table>
 </div>
 
-<h2 id="approach">Approach</h2>
+<h2 id="thesis">The central finding: hits depend on lens</h2>
+
+<p>The reviewer's concern — "are the clusters well separated?" — treats clusters as a fixed ground truth. They are not. The OASIS UMAP in the paper uses HVG clustering (one particular feature-set choice); swap in a different biologically-motivated gene set and you get a different clustering with a different set of enriched perturbations.</p>
+
+<p>This is not a weakness. It is the geometry of high-dimensional perturbation data: cells can be partitioned in many ways, each of which reveals a different axis of biology. The right question is not "is there one correct clustering?" but "does each meaningful lens produce biologically coherent enrichments?" — and the answer across three independent lenses is <strong>yes</strong>.</p>
+
+<h3>Headline: the FGF signal under the signaling lens</h3>
+
+<p>When cells are clustered on WNT/TGFB/NOTCH/MAPK pathway genes (KEGG), a single cluster (cluster 9, ~300 cells) contains cells from five FGF-ligand perturbations at enormous effect sizes:</p>
+
+<figure style="max-width:720px">
+  <img src="figures/Day6_sig_cluster_9_significant_ligands.png" alt="Day 6 signaling cluster 9 hits">
+  <figcaption><strong>Figure headline.</strong> Day 6, KEGG-signaling lens, cluster 9. FGF16 +62%, FGF4 +41%, FGF6 +40%, FGF3 +39%, FGF18 +16% — all q = 0.008. The MAPK-receiving cluster captures the entire FGF family in one coherent population.</figcaption>
+</figure>
+
+<p>The same FGFs are sharply <em>depleted</em> from cluster 4 (FGF16 −24%, FGF6 −21%, FGF4 −18%). Under the Tsankov lineage lens, FGF16 and FGF4 are the only FGF hits and they land in separate single-ligand clusters; under GO-programs, the FGFs start clustering together; under KEGG-signaling, the pathway-level organization makes the full family collapse into one cluster. <strong>That's lens-dependence in action.</strong></p>
+
+<details>
+  <summary>How we ran the three lenses (same pipeline, different gene set each time)</summary>
+  <p>For each feature set, we performed the same end-to-end analysis:</p>
+  <ol>
+    <li>Log-normalize the full count matrix.</li>
+    <li>Subset to union of panel genes detected in ≥1% of cells.</li>
+    <li>NTC-anchored z-score per gene (μ, σ from NTC only).</li>
+    <li>kNN (n_neighbors=30, Euclidean on z-scores) → Leiden (resolution=1.0, igraph flavor, seed=42) → UMAP (min_dist=0.8).</li>
+    <li>Per-cluster permutation enrichment: 10 000 permutations drawn from NTC, BH-FDR α=0.05, ≥20 cells per perturbation.</li>
+  </ol>
+  <p>Only the input gene set varied across runs. Full pipeline source: <a href="https://github.com/y-doctor/OASIS/blob/main/revision_scripts/revision_feature_set_analysis.py"><code>revision_scripts/revision_feature_set_analysis.py</code></a>.</p>
+</details>
+
+<h2 id="approach">Lens 1: Tsankov 2015 lineage scorecard</h2>
 
 <p>Each of the five Tsankov 2015 panels is a curated list of TaqMan-validated lineage markers (Tsankov et al., <em>Nat. Biotechnol.</em> 2015, <a href="https://pubmed.ncbi.nlm.nih.gov/26501952/">PMID 26501952</a>). We took the union of the five panels (80 input gene calls, 79 unique after FOXA1 dedup), filtered to genes detected in ≥1% of cells per day (Day 6: 37 genes; Day 4: 27 genes), and re-ran the clustering pipeline on this biologically-motivated feature set in place of HVGs:</p>
 
@@ -361,7 +400,7 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 
 <div id="d4-composition"></div>
 
-<h2 id="go-expanded">GO-expanded panels — broader biological programs</h2>
+<h2 id="go-expanded">Lens 2: GO developmental programs</h2>
 
 <p>The Tsankov scorecard is narrow (8–26 genes per panel → 27–37 union genes detected in our data). With so few features, the clustering fragments by individual TF bursts rather than coordinated lineage programs. To check whether broader panels change the story, we rebuilt the five panels by combining Gene Ontology biological-process terms from MSigDB/Enrichr with the Tsankov seeds as canonical markers.</p>
 
@@ -440,6 +479,74 @@ MS: FGF4, T, GDF3, NPPB, NR5A2</pre>
 <figure>
   <img src="figures/Day4_go_umap_clusters.png" alt="Day 4 GO-panel UMAP">
   <figcaption><strong>Figure 10.</strong> Day 4 GO-panel UMAP. 47 clusters (vs 76 with Tsankov) — expanded panels reduce fragmentation substantially, but Day 4 effects remain too weak for any perturbation to survive BH-FDR across ~600 tests per cluster.</figcaption>
+</figure>
+
+<h2 id="signaling">Lens 3: KEGG WNT / TGFB / NOTCH / MAPK signaling pathways</h2>
+
+<p>A third lens: instead of lineage identity or developmental programs, cluster on canonical signaling-pathway gene sets. These are the pathways through which most of our ligand perturbations actually signal (FGFs → MAPK; BMPs/activins → TGFβ; WNT ligands → WNT; DLL/JAG → NOTCH). Expecting that cells sort by which signaling program is active.</p>
+
+<table>
+  <thead><tr><th>Panel</th><th>KEGG pathway (Enrichr KEGG_2021_Human)</th><th>Gene count</th></tr></thead>
+  <tbody>
+    <tr><td>WNT</td><td>Wnt signaling pathway</td><td class="num">166</td></tr>
+    <tr><td>TGFB</td><td>TGF-beta signaling pathway</td><td class="num">94</td></tr>
+    <tr><td>NOTCH</td><td>Notch signaling pathway</td><td class="num">59</td></tr>
+    <tr><td>MAPK</td><td>MAPK signaling pathway</td><td class="num">294</td></tr>
+  </tbody>
+</table>
+
+<p>Panel JSON: <a href="data/signaling_panels.json">data/signaling_panels.json</a>. Fetcher: <a href="https://github.com/y-doctor/OASIS/blob/main/revision_scripts/build_signaling_panels.py"><code>revision_scripts/build_signaling_panels.py</code></a>.</p>
+
+<h3>Results — Day 6, signaling lens</h3>
+
+<p class="meta"><span class="pill">19 288 cells</span> &nbsp; <span class="pill">458 / 557 genes detected</span> &nbsp; <span class="pill">21 clusters</span> &nbsp; <span class="pill">8 hits in 2 clusters</span></p>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day6_sig_umap_clusters.png" alt="Day 6 signaling UMAP">
+    <figcaption><strong>Figure 11.</strong> Day 6 UMAP under the KEGG-signaling lens. 21 clusters.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_sig_umap_score_MAPK.png" alt="Day 6 MAPK score">
+    <figcaption>MAPK pathway score. The bright region is cluster 9 — the FGF-enriched cluster.</figcaption>
+  </figure>
+</div>
+
+<h4>Significant hits — Day 6 signaling</h4>
+
+<div id="d6-sig-hits-table"></div>
+
+<div class="grid">
+  <figure>
+    <img src="figures/Day6_sig_cluster_9_significant_ligands.png" alt="Cluster 9 bar">
+    <figcaption>Cluster 9: 5 FGF perturbations co-enriched, Δ up to +62%. q = 0.008.</figcaption>
+  </figure>
+  <figure>
+    <img src="figures/Day6_sig_cluster_4_significant_ligands.png" alt="Cluster 4 bar">
+    <figcaption>Cluster 4: FGF16/FGF6/FGF4 depleted.</figcaption>
+  </figure>
+</div>
+
+<details>
+  <summary>Day 6 signaling: other pathway score overlays + dotplot</summary>
+  <div class="grid">
+    <figure><img src="figures/Day6_sig_umap_score_WNT.png"><figcaption>WNT score</figcaption></figure>
+    <figure><img src="figures/Day6_sig_umap_score_TGFB.png"><figcaption>TGFB score</figcaption></figure>
+    <figure><img src="figures/Day6_sig_umap_score_NOTCH.png"><figcaption>NOTCH score</figcaption></figure>
+  </div>
+  <figure>
+    <img src="figures/Day6_sig_panel_dotplot.png" alt="Day 6 signaling dotplot">
+    <figcaption>Signaling-gene dotplot per cluster.</figcaption>
+  </figure>
+</details>
+
+<h3>Results — Day 4, signaling lens</h3>
+
+<p class="meta"><span class="pill">72 767 cells</span> &nbsp; <span class="pill">418 / 557 detected</span> &nbsp; <span class="pill">45 clusters</span> &nbsp; <span class="pill">0 hits</span></p>
+
+<figure>
+  <img src="figures/Day4_sig_umap_clusters.png" alt="Day 4 signaling UMAP">
+  <figcaption><strong>Figure 12.</strong> Day 4 signaling-lens UMAP. Same Day-4 story under this lens: fragmented, no FDR-significant hits — effects not yet strong enough at this earlier timepoint.</figcaption>
 </figure>
 
 <h2 id="day4-diagnostics">Day 4 (Tsankov panels): why so many clusters?</h2>
@@ -638,6 +745,7 @@ async function buildSummary(csvPath, clustersId, hitsId) {
   await buildBarGrid(d4, 'Day4', 'd4-bars');
   await buildComposition('data/Day4_all_enrichment_stats.csv', 'd4-composition', 5);
   await buildHitsTable('data/Day6_go_significant_hits.csv', 'd6-go-hits-table');
+  await buildHitsTable('data/Day6_sig_significant_hits.csv', 'd6-sig-hits-table');
 })();
 </script>
 

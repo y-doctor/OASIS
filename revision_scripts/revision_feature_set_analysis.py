@@ -52,10 +52,11 @@ TSANKOV_PANELS: dict[str, list[str]] = {
 }
 
 GO_PANELS_PATH = Path(__file__).parent / "go_panels.json"
+SIGNALING_PANELS_PATH = Path(__file__).parent / "signaling_panels.json"
 
 
 def load_panels(source: str) -> dict[str, list[str]]:
-    """Return the panel dict for the requested source: 'tsankov' or 'go'."""
+    """Return the panel dict for the requested source."""
     if source == "tsankov":
         return TSANKOV_PANELS
     if source == "go":
@@ -64,6 +65,13 @@ def load_panels(source: str) -> dict[str, list[str]]:
                 f"{GO_PANELS_PATH} not found. Run build_go_panels.py first."
             )
         obj = json.loads(GO_PANELS_PATH.read_text())
+        return obj["panels"]
+    if source == "signaling":
+        if not SIGNALING_PANELS_PATH.exists():
+            raise FileNotFoundError(
+                f"{SIGNALING_PANELS_PATH} not found. Run build_signaling_panels.py first."
+            )
+        obj = json.loads(SIGNALING_PANELS_PATH.read_text())
         return obj["panels"]
     raise ValueError(f"Unknown panel source: {source!r}")
 
@@ -573,9 +581,9 @@ def parse_args():
     )
     p.add_argument(
         "--panels",
-        choices=["tsankov", "go"],
+        choices=["tsankov", "go", "signaling"],
         default="tsankov",
-        help="tsankov (default): original 80-gene Tsankov 2015 scorecard. go: expanded GO-term + seed panels (see build_go_panels.py).",
+        help="tsankov (default): original 80-gene Tsankov 2015 scorecard. go: expanded GO:BP panels. signaling: KEGG WNT/TGFB/NOTCH/MAPK signaling pathways.",
     )
     return p.parse_args()
 
