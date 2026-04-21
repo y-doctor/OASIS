@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OASIS — iPSC Ligand Fitness Screen (v2)</title>
+<style>
+  :root {
+    --bg: #fafaf7;
+    --fg: #16181d;
+    --muted: #5b6470;
+    --rule: #e2e2dc;
+    --accent: #1a4480;
+    --accent-soft: #e8eef7;
+    --code-bg: #f0efe9;
+    --enrich: #1982C4;
+    --deplete: #FF595E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14151a;
+      --fg: #e8e7e1;
+      --muted: #9aa3ad;
+      --rule: #2a2c33;
+      --accent: #6ea3e5;
+      --accent-soft: #1c2a40;
+      --code-bg: #1f2027;
+    }
+  }
+  html { font-size: 16px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Charter", "Iowan Old Style", "Source Serif Pro", Georgia, serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 6rem;
+  }
+  header.lede {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+    margin: 0 0 .25rem;
+    letter-spacing: -.01em;
+  }
+  .kicker {
+    color: var(--muted);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .82rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin: 0 0 .75rem;
+  }
+  h2 {
+    font-size: 1.4rem;
+    margin: 3rem 0 .75rem;
+    letter-spacing: -.005em;
+    border-top: 1px solid var(--rule);
+    padding-top: 2rem;
+  }
+  h3 {
+    font-size: 1.05rem;
+    margin: 2rem 0 .5rem;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    font-weight: 600;
+  }
+  p { margin: 0 0 1rem; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .note {
+    border-left: 3px solid var(--accent);
+    background: var(--accent-soft);
+    margin: 1.5rem 0;
+    padding: .9rem 1.1rem;
+    font-size: .95rem;
+  }
+  .note p:last-child { margin-bottom: 0; }
+  code {
+    font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    background: var(--code-bg);
+    padding: .1em .35em;
+    border-radius: 3px;
+    font-size: .88em;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 1.25rem;
+    margin: 1.25rem 0 2rem;
+  }
+  figure {
+    margin: 0;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: .75rem;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+  }
+  figure a.img-link { display: block; }
+  figure img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    background: white;
+    border-radius: 4px;
+  }
+  figcaption {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .85rem;
+    color: var(--fg);
+    margin-top: .6rem;
+    line-height: 1.35;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+  }
+  .dl-btn {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    background: var(--accent);
+    color: white;
+    padding: .3rem .7rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .dl-btn:hover { text-decoration: none; opacity: .85; }
+  .bulk {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    font-size: .9rem;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="lede">
+    <p class="kicker">OASIS · iPSC Ligandome Fitness Screen</p>
+    <h1>Fitness screen re-analysis (v2)</h1>
+    <p>Rerun of the iPSC ligand fitness screen on re-computed MAGeCK outputs. All figures below are at 300&nbsp;dpi and available as individual PNG downloads (click the image for full size, or use the <em>Download</em> button).</p>
+  </header>
+
+  <section class="note">
+    <p><strong>Notes on this run:</strong></p>
+    <p>&bull; Day-vs-Day4 comparisons use <em>filtered</em> MAGeCK outputs; E6-vs-mTeSR comparisons use <em>unfiltered</em> outputs (filtering removed too many sgRNAs to get stable hit calls at this contrast).</p>
+    <p>&bull; Gene naming convention in the source data: ligand genes carry <code>_HUMAN</code> suffix (stripped for display); NTCs carry <code>_CONTROL</code> suffix (e.g. <code>AMPR_CONTROL</code>, <code>GLUC_CONTROL</code>, <code>MCHERRY_CONTROL</code>). Note that <code>GLUC_HUMAN</code> (Gaussia luciferase as a ligand) and <code>GLUC_CONTROL</code> (NTC) are both present and treated distinctly.</p>
+    <p>&bull; Hit definition: |LFC z-score| &gt; 2 and FDR &lt; 0.05. Blue = up, red = down.</p>
+  </section>
+
+  <h2>Day-vs-Day4 scatters</h2>
+  <p>LFC z-score (x) vs ligand score (y). Each point is a sgRNA. Positive-hit and negative-hit genes are labeled.</p>
+
+  <h3>E6 vs Day 4</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/E6_Day7_vs_E6_Day4.png"><img src="img/E6_Day7_vs_E6_Day4.png" alt="E6 Day 7 vs E6 Day 4"></a>
+      <figcaption><span>E6 Day 7 vs E6 Day 4</span><a class="dl-btn" href="img/E6_Day7_vs_E6_Day4.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_Day9_vs_E6_Day4.png"><img src="img/E6_Day9_vs_E6_Day4.png" alt="E6 Day 9 vs E6 Day 4"></a>
+      <figcaption><span>E6 Day 9 vs E6 Day 4</span><a class="dl-btn" href="img/E6_Day9_vs_E6_Day4.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_Day14_vs_E6_Day4.png"><img src="img/E6_Day14_vs_E6_Day4.png" alt="E6 Day 14 vs E6 Day 4"></a>
+      <figcaption><span>E6 Day 14 vs E6 Day 4</span><a class="dl-btn" href="img/E6_Day14_vs_E6_Day4.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>mTeSR vs Day 4</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/mTeSR_Day7_vs_mTeSR_Day4.png"><img src="img/mTeSR_Day7_vs_mTeSR_Day4.png" alt="mTeSR Day 7 vs mTeSR Day 4"></a>
+      <figcaption><span>mTeSR Day 7 vs mTeSR Day 4</span><a class="dl-btn" href="img/mTeSR_Day7_vs_mTeSR_Day4.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/mTeSR_Day9_vs_mTeSR_Day4.png"><img src="img/mTeSR_Day9_vs_mTeSR_Day4.png" alt="mTeSR Day 9 vs mTeSR Day 4"></a>
+      <figcaption><span>mTeSR Day 9 vs mTeSR Day 4</span><a class="dl-btn" href="img/mTeSR_Day9_vs_mTeSR_Day4.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/mTeSR_Day14_vs_mTeSR_Day4.png"><img src="img/mTeSR_Day14_vs_mTeSR_Day4.png" alt="mTeSR Day 14 vs mTeSR Day 4"></a>
+      <figcaption><span>mTeSR Day 14 vs mTeSR Day 4</span><a class="dl-btn" href="img/mTeSR_Day14_vs_mTeSR_Day4.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>E6 vs mTeSR (same day)</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/E6_Day7_vs_mTeSR_Day7.png"><img src="img/E6_Day7_vs_mTeSR_Day7.png" alt="E6 Day 7 vs mTeSR Day 7"></a>
+      <figcaption><span>E6 Day 7 vs mTeSR Day 7</span><a class="dl-btn" href="img/E6_Day7_vs_mTeSR_Day7.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_Day9_vs_mTeSR_Day9.png"><img src="img/E6_Day9_vs_mTeSR_Day9.png" alt="E6 Day 9 vs mTeSR Day 9"></a>
+      <figcaption><span>E6 Day 9 vs mTeSR Day 9</span><a class="dl-btn" href="img/E6_Day9_vs_mTeSR_Day9.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_Day14_vs_mTeSR_Day14.png"><img src="img/E6_Day14_vs_mTeSR_Day14.png" alt="E6 Day 14 vs mTeSR Day 14"></a>
+      <figcaption><span>E6 Day 14 vs mTeSR Day 14</span><a class="dl-btn" href="img/E6_Day14_vs_mTeSR_Day14.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h2>vs Plasmid Library</h2>
+  <p>Each day/condition compared to the NGS plasmid library.</p>
+
+  <h3>E6 vs plasmid</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/E6_Day7_vs_Plasmid_Library.png"><img src="img/E6_Day7_vs_Plasmid_Library.png" alt="E6 Day 7 vs Plasmid"></a>
+      <figcaption><span>E6 Day 7 vs Plasmid</span><a class="dl-btn" href="img/E6_Day7_vs_Plasmid_Library.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_Day9_vs_Plasmid_Library.png"><img src="img/E6_Day9_vs_Plasmid_Library.png" alt="E6 Day 9 vs Plasmid"></a>
+      <figcaption><span>E6 Day 9 vs Plasmid</span><a class="dl-btn" href="img/E6_Day9_vs_Plasmid_Library.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_Day14_vs_Plasmid_Library.png"><img src="img/E6_Day14_vs_Plasmid_Library.png" alt="E6 Day 14 vs Plasmid"></a>
+      <figcaption><span>E6 Day 14 vs Plasmid</span><a class="dl-btn" href="img/E6_Day14_vs_Plasmid_Library.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>mTeSR vs plasmid</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/mTeSR_Day7_vs_Plasmid_Library.png"><img src="img/mTeSR_Day7_vs_Plasmid_Library.png" alt="mTeSR Day 7 vs Plasmid"></a>
+      <figcaption><span>mTeSR Day 7 vs Plasmid</span><a class="dl-btn" href="img/mTeSR_Day7_vs_Plasmid_Library.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/mTeSR_Day9_vs_Plasmid_Library.png"><img src="img/mTeSR_Day9_vs_Plasmid_Library.png" alt="mTeSR Day 9 vs Plasmid"></a>
+      <figcaption><span>mTeSR Day 9 vs Plasmid</span><a class="dl-btn" href="img/mTeSR_Day9_vs_Plasmid_Library.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/mTeSR_Day14_vs_Plasmid_Library.png"><img src="img/mTeSR_Day14_vs_Plasmid_Library.png" alt="mTeSR Day 14 vs Plasmid"></a>
+      <figcaption><span>mTeSR Day 14 vs Plasmid</span><a class="dl-btn" href="img/mTeSR_Day14_vs_Plasmid_Library.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h2>Hit overlap Venns</h2>
+  <p>Three-way overlap of up- and down-regulated hits across Day 7, 9, 14.</p>
+
+  <h3>E6 &mdash; vs plasmid reference</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/E6_UP_Hit_overlap.png"><img src="img/E6_UP_Hit_overlap.png" alt="E6 UP hits (vs plasmid)"></a>
+      <figcaption><span>E6 UP hits (vs plasmid)</span><a class="dl-btn" href="img/E6_UP_Hit_overlap.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_DOWN_Hit_overlap.png"><img src="img/E6_DOWN_Hit_overlap.png" alt="E6 DOWN hits (vs plasmid)"></a>
+      <figcaption><span>E6 DOWN hits (vs plasmid)</span><a class="dl-btn" href="img/E6_DOWN_Hit_overlap.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>mTeSR &mdash; vs plasmid reference</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/mTeSR_UP_Hit_overlap.png"><img src="img/mTeSR_UP_Hit_overlap.png" alt="mTeSR UP hits (vs plasmid)"></a>
+      <figcaption><span>mTeSR UP hits (vs plasmid)</span><a class="dl-btn" href="img/mTeSR_UP_Hit_overlap.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/mTeSR_DOWN_Hit_overlap.png"><img src="img/mTeSR_DOWN_Hit_overlap.png" alt="mTeSR DOWN hits (vs plasmid)"></a>
+      <figcaption><span>mTeSR DOWN hits (vs plasmid)</span><a class="dl-btn" href="img/mTeSR_DOWN_Hit_overlap.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>E6 &mdash; vs Day&nbsp;4 reference</h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/E6_UP_Hit_Day4_Relative_overlap.png"><img src="img/E6_UP_Hit_Day4_Relative_overlap.png" alt="E6 UP hits (vs Day 4)"></a>
+      <figcaption><span>E6 UP hits (vs Day 4)</span><a class="dl-btn" href="img/E6_UP_Hit_Day4_Relative_overlap.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/E6_DOWN_Hit_Day4_Relative_overlap.png"><img src="img/E6_DOWN_Hit_Day4_Relative_overlap.png" alt="E6 DOWN hits (vs Day 4)"></a>
+      <figcaption><span>E6 DOWN hits (vs Day 4)</span><a class="dl-btn" href="img/E6_DOWN_Hit_Day4_Relative_overlap.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h3>mTeSR &mdash; vs Day&nbsp;4 reference <em style="color:var(--accent); font-style:normal; font-size:.8rem;">(new in v2)</em></h3>
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/mTeSR_UP_Hit_Day4_Relative_overlap.png"><img src="img/mTeSR_UP_Hit_Day4_Relative_overlap.png" alt="mTeSR UP hits (vs Day 4)"></a>
+      <figcaption><span>mTeSR UP hits (vs Day 4)</span><a class="dl-btn" href="img/mTeSR_UP_Hit_Day4_Relative_overlap.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/mTeSR_DOWN_Hit_Day4_Relative_overlap.png"><img src="img/mTeSR_DOWN_Hit_Day4_Relative_overlap.png" alt="mTeSR DOWN hits (vs Day 4)"></a>
+      <figcaption><span>mTeSR DOWN hits (vs Day 4)</span><a class="dl-btn" href="img/mTeSR_DOWN_Hit_Day4_Relative_overlap.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <h2>FGF family analysis</h2>
+  <p>FGF family genes stand out as strong E6-vs-mTeSR hits at D14. Time-course across D7/D9/D14, compared to the NTC control set (AMPR/CLUC/GLUC/HALO/MCHERRY/SNAP <code>_CONTROL</code> sgRNAs).</p>
+  <p>Two-way ANOVA on the barplot data: Group <em>p</em>=5.8e-14, Day <em>p</em>=7.4e-16, Group&times;Day <em>p</em>=6.4e-12.</p>
+
+  <div class="grid">
+    <figure>
+      <a class="img-link" href="img/E6_vs_mTeSR_FGF_Family_Hits.png"><img src="img/E6_vs_mTeSR_FGF_Family_Hits.png" alt="FGF family time-course"></a>
+      <figcaption><span>FGF family LFC time-course (E6 vs mTeSR)</span><a class="dl-btn" href="img/E6_vs_mTeSR_FGF_Family_Hits.png" download>Download</a></figcaption>
+    </figure>
+    <figure>
+      <a class="img-link" href="img/FGF_Hits_vs_NTCs_LFC_Barplot.png"><img src="img/FGF_Hits_vs_NTCs_LFC_Barplot.png" alt="FGF hits vs NTCs"></a>
+      <figcaption><span>FGF hits vs NTCs (mean &plusmn; SD per day)</span><a class="dl-btn" href="img/FGF_Hits_vs_NTCs_LFC_Barplot.png" download>Download</a></figcaption>
+    </figure>
+  </div>
+
+  <p style="margin-top:3rem; font-size:.85rem; color:var(--muted); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;">
+    Source notebook: <code>Fitness_Screen_Analysis/analysis_v2.ipynb</code> &middot; Source PNGs: <code>figures/v2/</code> &middot; Also available as SVG at the same path.
+  </p>
+</main>
+</body>
+</html>
