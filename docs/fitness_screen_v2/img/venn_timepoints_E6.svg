@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="513.36pt" height="530.279531pt" viewBox="0 0 513.36 530.279531" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-15T11:02:33.801754</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 530.279531 
+L 513.36 530.279531 
+L 513.36 -0 
+L 0 -0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 180.9288 326.670731 
+C 211.002832 326.670731 239.849157 314.722192 261.114709 293.45664 
+C 282.380261 272.191089 294.3288 243.344763 294.3288 213.270731 
+C 294.3288 183.1967 282.380261 154.350374 261.114709 133.084822 
+C 239.849157 111.819271 211.002832 99.870731 180.9288 99.870731 
+C 150.854768 99.870731 122.008443 111.819271 100.742891 133.084822 
+C 79.477339 154.350374 67.5288 183.1967 67.5288 213.270731 
+C 67.5288 243.344763 79.477339 272.191089 100.742891 293.45664 
+C 122.008443 314.722192 150.854768 326.670731 180.9288 326.670731 
+z
+" clip-path="url(#p3adbb82c11)" style="fill: #d1eeea; fill-opacity: 0.5; stroke: #d1eeea; stroke-opacity: 0.75; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 331.9776 326.670731 
+C 362.051632 326.670731 390.897957 314.722192 412.163509 293.45664 
+C 433.429061 272.191089 445.3776 243.344763 445.3776 213.270731 
+C 445.3776 183.1967 433.429061 154.350374 412.163509 133.084822 
+C 390.897957 111.819271 362.051632 99.870731 331.9776 99.870731 
+C 301.903568 99.870731 273.057243 111.819271 251.791691 133.084822 
+C 230.526139 154.350374 218.5776 183.1967 218.5776 213.270731 
+C 218.5776 243.344763 230.526139 272.191089 251.791691 293.45664 
+C 273.057243 314.722192 301.903568 326.670731 331.9776 326.670731 
+z
+" clip-path="url(#p3adbb82c11)" style="fill: #4f90a6; fill-opacity: 0.5; stroke: #4f90a6; stroke-opacity: 0.75; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 256.68 473.183531 
+C 286.754032 473.183531 315.600357 461.234992 336.865909 439.96944 
+C 358.131461 418.703889 370.08 389.857563 370.08 359.783531 
+C 370.08 329.7095 358.131461 300.863174 336.865909 279.597622 
+C 315.600357 258.332071 286.754032 246.383531 256.68 246.383531 
+C 226.605968 246.383531 197.759643 258.332071 176.494091 279.597622 
+C 155.228539 300.863174 143.28 329.7095 143.28 359.783531 
+C 143.28 389.857563 155.228539 418.703889 176.494091 439.96944 
+C 197.759643 461.234992 226.605968 473.183531 256.68 473.183531 
+z
+" clip-path="url(#p3adbb82c11)" style="fill: #1a4480; fill-opacity: 0.5; stroke: #1a4480; stroke-opacity: 0.75; stroke-linejoin: miter"/>
+   </g>
+   <g id="matplotlib.axis_1"/>
+   <g id="matplotlib.axis_2"/>
+   <g id="text_1">
+    <text style="font-size: 10px; font-family: 'Arial'" transform="translate(208.622187 369.935812)">FGF18, FGF2, FGF3,</text>
+    <text style="font-size: 10px; font-family: 'Arial'" transform="translate(211.402656 380.512687)">FGF4, FGF5, FGF6,</text>
+    <text style="font-size: 10px; font-family: 'Arial'" transform="translate(243.902656 391.089562)">FGF8</text>
+   </g>
+   <g id="text_2">
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: middle" x="361.008" y="208.144687" transform="rotate(-0 361.008 208.144687)">BMP8B</text>
+   </g>
+   <g id="text_3">
+    <text style="font-size: 10px; font-family: 'Arial'" transform="translate(270.733031 289.04025)">CXCL7, FGF16,</text>
+    <text style="font-size: 10px; font-family: 'Arial'" transform="translate(275.462719 299.617125)">FGF20, FGF9</text>
+   </g>
+   <g id="text_4">
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: middle" x="152.352" y="208.144687" transform="rotate(-0 152.352 208.144687)">SEM4B</text>
+   </g>
+   <g id="text_5">
+    <text style="font-size: 10px; font-family: 'Arial'; text-anchor: middle" x="206.784" y="294.328688" transform="rotate(-0 206.784 294.328688)">HLAI</text>
+   </g>
+   <g id="text_6">
+    <text style="font-size: 15px; font-family: 'Arial'; text-anchor: middle" x="256.68" y="18.119531" transform="rotate(-0 256.68 18.119531)">Enriched hits (Z&gt;2 &amp; FDR&lt;0.05) across timepoints — E6 (vs Day 4)</text>
+   </g>
+   <g id="legend_1">
+    <g id="patch_5">
+     <path d="M 14.2 74.966406 
+L 77.882813 74.966406 
+Q 79.882813 74.966406 79.882813 72.966406 
+L 79.882813 31.119531 
+Q 79.882813 29.119531 77.882813 29.119531 
+L 14.2 29.119531 
+Q 12.2 29.119531 12.2 31.119531 
+L 12.2 72.966406 
+Q 12.2 74.966406 14.2 74.966406 
+z
+" style="fill: #ffffff; opacity: 0.8; stroke: #cccccc; stroke-linejoin: miter"/>
+    </g>
+    <g id="patch_6">
+     <path d="M 16.2 40.277344 
+L 36.2 40.277344 
+L 36.2 33.277344 
+L 16.2 33.277344 
+z
+" style="fill: #d1eeea; fill-opacity: 0.5; stroke: #d1eeea; stroke-opacity: 0.75; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_7">
+     <text style="font-size: 10px; font-family: 'Arial'; text-anchor: start" x="44.2" y="40.277344" transform="rotate(-0 44.2 40.277344)">Day 7</text>
+    </g>
+    <g id="patch_7">
+     <path d="M 16.2 54.569531 
+L 36.2 54.569531 
+L 36.2 47.569531 
+L 16.2 47.569531 
+z
+" style="fill: #4f90a6; fill-opacity: 0.5; stroke: #4f90a6; stroke-opacity: 0.75; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 10px; font-family: 'Arial'; text-anchor: start" x="44.2" y="54.569531" transform="rotate(-0 44.2 54.569531)">Day 9</text>
+    </g>
+    <g id="patch_8">
+     <path d="M 16.2 68.861719 
+L 36.2 68.861719 
+L 36.2 61.861719 
+L 16.2 61.861719 
+z
+" style="fill: #1a4480; fill-opacity: 0.5; stroke: #1a4480; stroke-opacity: 0.75; stroke-linejoin: miter"/>
+    </g>
+    <g id="text_9">
+     <text style="font-size: 10px; font-family: 'Arial'; text-anchor: start" x="44.2" y="68.861719" transform="rotate(-0 44.2 68.861719)">Day 14</text>
+    </g>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p3adbb82c11">
+   <rect x="7.2" y="24.119531" width="498.96" height="498.96"/>
+  </clipPath>
+ </defs>
+</svg>

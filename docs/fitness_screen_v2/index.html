@@ -111,7 +111,7 @@
       </figure>
   </div>
   <h2 id="fgf">FGF-family rescue</h2>
-  <p>E6 (Essential 6) is mTeSR/E8 <strong>minus FGF2 and TGF&beta;</strong>. Ligands that supply their own FGF autocrine-rescue the FGF starvation, so the FGF family enriches in E6 over time. The Venn shows the FGFs are specifically E6 enhancers (enriched vs baseline in E6 <em>and</em> vs mTeSR, but not vs baseline in mTeSR).</p>
+  <p>E6 (Essential 6) is mTeSR/E8 <strong>minus FGF2 and TGF&beta;</strong>. Ligands that supply their own FGF autocrine-rescue the FGF starvation, so the FGF family enriches in E6 over time.</p>
   <div class="grid">
       <figure>
         <a class="img-link" href="img/E6_vs_mTeSR_FGF_trajectory.png"><img src="img/E6_vs_mTeSR_FGF_trajectory.png" alt="FGF-family LFC trajectory (E6 vs mTeSR, D7-&gt;D14)"></a>
@@ -120,18 +120,29 @@
           <a class="dl-btn svg" href="img/E6_vs_mTeSR_FGF_trajectory.svg" download>SVG</a>
         </span></figcaption>
       </figure>
+  </div>
+  <h2 id="overlap">Hit overlap across timepoints</h2>
+  <p>Enriched hits (|Z|&gt;2 &amp; FDR&lt;0.05) shared across Day 7 / Day 9 / Day 14 — one Venn per arm, circles are timepoints. The central lobe is the persistent (all-three-days) set. The E6 and mTeSR arms are each vs their Day 4 baseline; the third is the E6-vs-mTeSR differential.</p>
+  <div class="grid">
       <figure>
-        <a class="img-link" href="img/venn3_enriched_Day14.png"><img src="img/venn3_enriched_Day14.png" alt="Enriched-hit overlap — Day 14"></a>
-        <figcaption><span>Enriched-hit overlap — Day 14</span><span class="dl">
-          <a class="dl-btn" href="img/venn3_enriched_Day14.png" download>PNG</a>
-          <a class="dl-btn svg" href="img/venn3_enriched_Day14.svg" download>SVG</a>
+        <a class="img-link" href="img/venn_timepoints_E6.png"><img src="img/venn_timepoints_E6.png" alt="E6 (vs Day 4) — D7/D9/D14 overlap"></a>
+        <figcaption><span>E6 (vs Day 4) — D7/D9/D14 overlap</span><span class="dl">
+          <a class="dl-btn" href="img/venn_timepoints_E6.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/venn_timepoints_E6.svg" download>SVG</a>
         </span></figcaption>
       </figure>
       <figure>
-        <a class="img-link" href="img/venn3_enriched_unionD7D9D14.png"><img src="img/venn3_enriched_unionD7D9D14.png" alt="Enriched-hit overlap — any timepoint (D7/9/14)"></a>
-        <figcaption><span>Enriched-hit overlap — any timepoint (D7/9/14)</span><span class="dl">
-          <a class="dl-btn" href="img/venn3_enriched_unionD7D9D14.png" download>PNG</a>
-          <a class="dl-btn svg" href="img/venn3_enriched_unionD7D9D14.svg" download>SVG</a>
+        <a class="img-link" href="img/venn_timepoints_mTeSR.png"><img src="img/venn_timepoints_mTeSR.png" alt="mTeSR (vs Day 4) — D7/D9/D14 overlap"></a>
+        <figcaption><span>mTeSR (vs Day 4) — D7/D9/D14 overlap</span><span class="dl">
+          <a class="dl-btn" href="img/venn_timepoints_mTeSR.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/venn_timepoints_mTeSR.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/venn_timepoints_E6_vs_mTeSR.png"><img src="img/venn_timepoints_E6_vs_mTeSR.png" alt="E6 vs mTeSR — D7/D9/D14 overlap"></a>
+        <figcaption><span>E6 vs mTeSR — D7/D9/D14 overlap</span><span class="dl">
+          <a class="dl-btn" href="img/venn_timepoints_E6_vs_mTeSR.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/venn_timepoints_E6_vs_mTeSR.svg" download>SVG</a>
         </span></figcaption>
       </figure>
   </div>
@@ -264,11 +275,71 @@
       </figure>
   </div>
   <h2 id="qc">Replicate reproducibility (QC)</h2>
-  <p>sgRNA LFC of rep1 vs rep2 (each vs the Day 4 mean), CPM-filtered survivors (n=744). Pearson r is modest early (0.23–0.28 at D7/D9 — most constructs have ~zero true effect, so noise dominates) and climbs as real effects emerge (Day 14: E6 r=0.52, mTeSR r=0.40).</p>
+  <p>sgRNA LFC of rep1 vs rep2, CPM-filtered survivors (n=744), against two references. <strong>vs plasmid</strong> (the deep, stable library reference) the reps are highly reproducible (Pearson r 0.91–0.93 at every condition, incl. Day 4). <strong>vs the Day 4 mean</strong> the common representation signal is subtracted out, leaving only small biological fitness differences, so r is modest early (0.23–0.28) and climbs as real effects emerge (Day 14: E6 0.52, mTeSR 0.40). Both are correct — they measure different things.</p>
+  <h3>vs plasmid</h3>
   <div class="grid">
       <figure>
-        <a class="img-link" href="img/ALL_replicate_corr_grid.png"><img src="img/ALL_replicate_corr_grid.png" alt="Replicate correlation — all conditions (grid)"></a>
-        <figcaption><span>Replicate correlation — all conditions (grid)</span><span class="dl">
+        <a class="img-link" href="img/ALL_replicate_corr_vs_plasmid_grid.png"><img src="img/ALL_replicate_corr_vs_plasmid_grid.png" alt="vs plasmid — all conditions (grid)"></a>
+        <figcaption><span>vs plasmid — all conditions (grid)</span><span class="dl">
+          <a class="dl-btn" href="img/ALL_replicate_corr_vs_plasmid_grid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/ALL_replicate_corr_vs_plasmid_grid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day4_LFC_vs_plasmid.png"><img src="img/repcorr_Day4_LFC_vs_plasmid.png" alt="Day 4 — rep1 vs rep2"></a>
+        <figcaption><span>Day 4 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day4_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day4_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day7_E6_LFC_vs_plasmid.png"><img src="img/repcorr_Day7_E6_LFC_vs_plasmid.png" alt="E6 Day 7 — rep1 vs rep2"></a>
+        <figcaption><span>E6 Day 7 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day7_E6_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day7_E6_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day9_E6_LFC_vs_plasmid.png"><img src="img/repcorr_Day9_E6_LFC_vs_plasmid.png" alt="E6 Day 9 — rep1 vs rep2"></a>
+        <figcaption><span>E6 Day 9 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day9_E6_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day9_E6_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day14_E6_LFC_vs_plasmid.png"><img src="img/repcorr_Day14_E6_LFC_vs_plasmid.png" alt="E6 Day 14 — rep1 vs rep2"></a>
+        <figcaption><span>E6 Day 14 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day14_E6_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day14_E6_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day7_mTeSR_LFC_vs_plasmid.png"><img src="img/repcorr_Day7_mTeSR_LFC_vs_plasmid.png" alt="mTeSR Day 7 — rep1 vs rep2"></a>
+        <figcaption><span>mTeSR Day 7 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day7_mTeSR_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day7_mTeSR_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day9_mTeSR_LFC_vs_plasmid.png"><img src="img/repcorr_Day9_mTeSR_LFC_vs_plasmid.png" alt="mTeSR Day 9 — rep1 vs rep2"></a>
+        <figcaption><span>mTeSR Day 9 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day9_mTeSR_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day9_mTeSR_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_Day14_mTeSR_LFC_vs_plasmid.png"><img src="img/repcorr_Day14_mTeSR_LFC_vs_plasmid.png" alt="mTeSR Day 14 — rep1 vs rep2"></a>
+        <figcaption><span>mTeSR Day 14 — rep1 vs rep2</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_Day14_mTeSR_LFC_vs_plasmid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_Day14_mTeSR_LFC_vs_plasmid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>vs Day 4 mean</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/ALL_replicate_corr_grid.png"><img src="img/ALL_replicate_corr_grid.png" alt="vs Day 4 mean — all conditions (grid)"></a>
+        <figcaption><span>vs Day 4 mean — all conditions (grid)</span><span class="dl">
           <a class="dl-btn" href="img/ALL_replicate_corr_grid.png" download>PNG</a>
           <a class="dl-btn svg" href="img/ALL_replicate_corr_grid.svg" download>SVG</a>
         </span></figcaption>
