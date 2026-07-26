@@ -465,6 +465,525 @@
         </span></figcaption>
       </figure>
   </div>
+  <h2 id="rnaseq-null">T-cell RNA-seq validation — ligand vs SNAP at matched timepoints</h2>
+  <p>Bulk RNA-seq validation of two screen hits (<strong>CCL13</strong>, <strong>IL18</strong>) against the <strong>SNAP</strong> control in primary T cells at Day 4 / 8 / 12 (IGM run <code>260720_LH00444_0550_B23MVY3LT4</code>; STAR &rarr; featureCounts &rarr; pydeseq2, n=2 per group). Because raw depth ranged 32M&ndash;557M pairs across the 18 libraries, every panel in these three sections is computed on BAMs <strong>randomly downsampled to 20M mapped pairs</strong> (seed 42) so all samples are depth-matched. <strong>Result: 0 DEGs</strong> at padj&lt;0.05 &amp; |LFC|&ge;2 in all six ligand-vs-SNAP contrasts. The replicate panels show why this is a genuine null rather than a technical failure: count-level replicate correlation is ~0.997, but the replicates' <em>fold-changes</em> vs SNAP agree only weakly (r 0.19&ndash;0.70) because there is no real fold-change for them to agree on. D8 is the least-null timepoint in both arms.</p>
+  <h3>volcanoes (ligand vs SNAP, same day)</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_vs_SNAP_D4.png"><img src="img/volcano_CCL13_vs_SNAP_D4.png" alt="CCL13 vs SNAP — D4"></a>
+        <figcaption><span>CCL13 vs SNAP — D4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_vs_SNAP_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_vs_SNAP_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_vs_SNAP_D8.png"><img src="img/volcano_CCL13_vs_SNAP_D8.png" alt="CCL13 vs SNAP — D8"></a>
+        <figcaption><span>CCL13 vs SNAP — D8</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_vs_SNAP_D8.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_vs_SNAP_D8.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_vs_SNAP_D12.png"><img src="img/volcano_CCL13_vs_SNAP_D12.png" alt="CCL13 vs SNAP — D12"></a>
+        <figcaption><span>CCL13 vs SNAP — D12</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_vs_SNAP_D12.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_vs_SNAP_D12.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_vs_SNAP_D4.png"><img src="img/volcano_IL18_vs_SNAP_D4.png" alt="IL18 vs SNAP — D4"></a>
+        <figcaption><span>IL18 vs SNAP — D4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_vs_SNAP_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_vs_SNAP_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_vs_SNAP_D8.png"><img src="img/volcano_IL18_vs_SNAP_D8.png" alt="IL18 vs SNAP — D8"></a>
+        <figcaption><span>IL18 vs SNAP — D8</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_vs_SNAP_D8.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_vs_SNAP_D8.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_vs_SNAP_D12.png"><img src="img/volcano_IL18_vs_SNAP_D12.png" alt="IL18 vs SNAP — D12"></a>
+        <figcaption><span>IL18 vs SNAP — D12</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_vs_SNAP_D12.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_vs_SNAP_D12.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>replicate reproducibility of LFC vs SNAP</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/rnaseq_null_repcorr_ALL_grid.png"><img src="img/rnaseq_null_repcorr_ALL_grid.png" alt="All six conditions (grid) — rep1 vs rep2 LFC vs SNAP"></a>
+        <figcaption><span>All six conditions (grid) — rep1 vs rep2 LFC vs SNAP</span><span class="dl">
+          <a class="dl-btn" href="img/rnaseq_null_repcorr_ALL_grid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/rnaseq_null_repcorr_ALL_grid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_vs_SNAP_D4.png"><img src="img/repcorr_CCL13_vs_SNAP_D4.png" alt="CCL13 vs SNAP — D4"></a>
+        <figcaption><span>CCL13 vs SNAP — D4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_vs_SNAP_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_vs_SNAP_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_vs_SNAP_D8.png"><img src="img/repcorr_CCL13_vs_SNAP_D8.png" alt="CCL13 vs SNAP — D8"></a>
+        <figcaption><span>CCL13 vs SNAP — D8</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_vs_SNAP_D8.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_vs_SNAP_D8.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_vs_SNAP_D12.png"><img src="img/repcorr_CCL13_vs_SNAP_D12.png" alt="CCL13 vs SNAP — D12"></a>
+        <figcaption><span>CCL13 vs SNAP — D12</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_vs_SNAP_D12.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_vs_SNAP_D12.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_vs_SNAP_D4.png"><img src="img/repcorr_IL18_vs_SNAP_D4.png" alt="IL18 vs SNAP — D4"></a>
+        <figcaption><span>IL18 vs SNAP — D4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_vs_SNAP_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_vs_SNAP_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_vs_SNAP_D8.png"><img src="img/repcorr_IL18_vs_SNAP_D8.png" alt="IL18 vs SNAP — D8"></a>
+        <figcaption><span>IL18 vs SNAP — D8</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_vs_SNAP_D8.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_vs_SNAP_D8.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_vs_SNAP_D12.png"><img src="img/repcorr_IL18_vs_SNAP_D12.png" alt="IL18 vs SNAP — D12"></a>
+        <figcaption><span>IL18 vs SNAP — D12</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_vs_SNAP_D12.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_vs_SNAP_D12.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h2 id="rnaseq-within">T-cell RNA-seq — within-ligand time course (vs its own Day 4)</h2>
+  <p>Each arm compared to <strong>its own Day 4</strong> baseline: SNAP D8/D12 vs SNAP D4, CCL13 D8/D12 vs CCL13 D4, IL18 D8/D12 vs IL18 D4. This is where the dataset's real signal lives — <strong>~1,000&ndash;1,700 DEGs per comparison</strong> with replicate LFC correlations of <strong>0.91&ndash;0.98</strong>, which validates the libraries, the counts and the DESeq2 setup, and confirms that the flat ligand-vs-SNAP result above is biology and not a depth or normalisation artefact. About <strong>70%</strong> of the D4&rarr;D8 DEGs are shared by all three arms, i.e. most of the change is culture/activation rather than ligand-driven. The exception is <strong>IL18 at D8</strong> (1,008 up / 698 down, the largest set, with 278 up-only and 268 down-only genes beyond SNAP and CCL13). GO: the shared programme is a coordinated loss of the cytokine/inflammatory and B-cell-receptor signalling signature with ribosome-biogenesis down, and calcium-channel / synapse-organisation terms up by D12.</p>
+  <h3>summary grids</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/rnaseq_within_volcano_grid.png"><img src="img/rnaseq_within_volcano_grid.png" alt="All six comparisons — volcanoes (grid)"></a>
+        <figcaption><span>All six comparisons — volcanoes (grid)</span><span class="dl">
+          <a class="dl-btn" href="img/rnaseq_within_volcano_grid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/rnaseq_within_volcano_grid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/rnaseq_within_repcorr_grid.png"><img src="img/rnaseq_within_repcorr_grid.png" alt="All six comparisons — replicate LFC reproducibility (grid)"></a>
+        <figcaption><span>All six comparisons — replicate LFC reproducibility (grid)</span><span class="dl">
+          <a class="dl-btn" href="img/rnaseq_within_repcorr_grid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/rnaseq_within_repcorr_grid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>volcanoes</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/volcano_SNAP_D8_vs_D4.png"><img src="img/volcano_SNAP_D8_vs_D4.png" alt="SNAP D8 vs own Day 4"></a>
+        <figcaption><span>SNAP D8 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_SNAP_D8_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_SNAP_D8_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_SNAP_D12_vs_D4.png"><img src="img/volcano_SNAP_D12_vs_D4.png" alt="SNAP D12 vs own Day 4"></a>
+        <figcaption><span>SNAP D12 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_SNAP_D12_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_SNAP_D12_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_D8_vs_D4.png"><img src="img/volcano_CCL13_D8_vs_D4.png" alt="CCL13 D8 vs own Day 4"></a>
+        <figcaption><span>CCL13 D8 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_D8_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_D8_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_D12_vs_D4.png"><img src="img/volcano_CCL13_D12_vs_D4.png" alt="CCL13 D12 vs own Day 4"></a>
+        <figcaption><span>CCL13 D12 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_D12_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_D12_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_D8_vs_D4.png"><img src="img/volcano_IL18_D8_vs_D4.png" alt="IL18 D8 vs own Day 4"></a>
+        <figcaption><span>IL18 D8 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_D8_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_D8_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_D12_vs_D4.png"><img src="img/volcano_IL18_D12_vs_D4.png" alt="IL18 D12 vs own Day 4"></a>
+        <figcaption><span>IL18 D12 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_D12_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_D12_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>replicate reproducibility of LFC</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/repcorr_SNAP_D8_vs_D4.png"><img src="img/repcorr_SNAP_D8_vs_D4.png" alt="SNAP D8 vs own Day 4"></a>
+        <figcaption><span>SNAP D8 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_SNAP_D8_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_SNAP_D8_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_SNAP_D12_vs_D4.png"><img src="img/repcorr_SNAP_D12_vs_D4.png" alt="SNAP D12 vs own Day 4"></a>
+        <figcaption><span>SNAP D12 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_SNAP_D12_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_SNAP_D12_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_D8_vs_D4.png"><img src="img/repcorr_CCL13_D8_vs_D4.png" alt="CCL13 D8 vs own Day 4"></a>
+        <figcaption><span>CCL13 D8 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_D8_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_D8_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_D12_vs_D4.png"><img src="img/repcorr_CCL13_D12_vs_D4.png" alt="CCL13 D12 vs own Day 4"></a>
+        <figcaption><span>CCL13 D12 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_D12_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_D12_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_D8_vs_D4.png"><img src="img/repcorr_IL18_D8_vs_D4.png" alt="IL18 D8 vs own Day 4"></a>
+        <figcaption><span>IL18 D8 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_D8_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_D8_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_D12_vs_D4.png"><img src="img/repcorr_IL18_D12_vs_D4.png" alt="IL18 D12 vs own Day 4"></a>
+        <figcaption><span>IL18 D12 vs own Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_D12_vs_D4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_D12_vs_D4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>GO enrichment (Enrichr; BP / MF / CC 2023, padj&lt;0.05 &amp; |LFC|&ge;2 DEGs)</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D8_vs_D4_up.png"><img src="img/GO_SNAP_D8_vs_D4_up.png" alt="GO — SNAP D8 vs own D4 (up DEGs)"></a>
+        <figcaption><span>GO — SNAP D8 vs own D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D8_vs_D4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D8_vs_D4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D8_vs_D4_down.png"><img src="img/GO_SNAP_D8_vs_D4_down.png" alt="GO — SNAP D8 vs own D4 (down DEGs)"></a>
+        <figcaption><span>GO — SNAP D8 vs own D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D8_vs_D4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D8_vs_D4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D12_vs_D4_up.png"><img src="img/GO_SNAP_D12_vs_D4_up.png" alt="GO — SNAP D12 vs own D4 (up DEGs)"></a>
+        <figcaption><span>GO — SNAP D12 vs own D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D12_vs_D4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D12_vs_D4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D12_vs_D4_down.png"><img src="img/GO_SNAP_D12_vs_D4_down.png" alt="GO — SNAP D12 vs own D4 (down DEGs)"></a>
+        <figcaption><span>GO — SNAP D12 vs own D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D12_vs_D4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D12_vs_D4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D8_vs_D4_up.png"><img src="img/GO_CCL13_D8_vs_D4_up.png" alt="GO — CCL13 D8 vs own D4 (up DEGs)"></a>
+        <figcaption><span>GO — CCL13 D8 vs own D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D8_vs_D4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D8_vs_D4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D8_vs_D4_down.png"><img src="img/GO_CCL13_D8_vs_D4_down.png" alt="GO — CCL13 D8 vs own D4 (down DEGs)"></a>
+        <figcaption><span>GO — CCL13 D8 vs own D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D8_vs_D4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D8_vs_D4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D12_vs_D4_up.png"><img src="img/GO_CCL13_D12_vs_D4_up.png" alt="GO — CCL13 D12 vs own D4 (up DEGs)"></a>
+        <figcaption><span>GO — CCL13 D12 vs own D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D12_vs_D4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D12_vs_D4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D12_vs_D4_down.png"><img src="img/GO_CCL13_D12_vs_D4_down.png" alt="GO — CCL13 D12 vs own D4 (down DEGs)"></a>
+        <figcaption><span>GO — CCL13 D12 vs own D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D12_vs_D4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D12_vs_D4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D8_vs_D4_up.png"><img src="img/GO_IL18_D8_vs_D4_up.png" alt="GO — IL18 D8 vs own D4 (up DEGs)"></a>
+        <figcaption><span>GO — IL18 D8 vs own D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D8_vs_D4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D8_vs_D4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D8_vs_D4_down.png"><img src="img/GO_IL18_D8_vs_D4_down.png" alt="GO — IL18 D8 vs own D4 (down DEGs)"></a>
+        <figcaption><span>GO — IL18 D8 vs own D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D8_vs_D4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D8_vs_D4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D12_vs_D4_up.png"><img src="img/GO_IL18_D12_vs_D4_up.png" alt="GO — IL18 D12 vs own D4 (up DEGs)"></a>
+        <figcaption><span>GO — IL18 D12 vs own D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D12_vs_D4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D12_vs_D4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D12_vs_D4_down.png"><img src="img/GO_IL18_D12_vs_D4_down.png" alt="GO — IL18 D12 vs own D4 (down DEGs)"></a>
+        <figcaption><span>GO — IL18 D12 vs own D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D12_vs_D4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D12_vs_D4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h2 id="rnaseq-vssnapd4">T-cell RNA-seq — every group vs SNAP Day 4</h2>
+  <p>The same eight groups all referenced to the single <strong>SNAP Day 4</strong> baseline, so time and ligand effects sit on one common scale. The two SNAP rows are by construction identical to the within-ligand contrasts above. The pattern is unambiguous: the two same-day contrasts (<strong>CCL13 D4</strong>, <strong>IL18 D4</strong> vs SNAP D4) return <strong>0 DEGs</strong>, while every D8 and D12 group returns ~1,000&ndash;1,700 DEGs that closely track the SNAP time course — the time axis dominates and the ligands contribute little on top of it.</p>
+  <h3>summary grids</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/rnaseq_vssnap_volcano_grid.png"><img src="img/rnaseq_vssnap_volcano_grid.png" alt="All eight comparisons — volcanoes (grid)"></a>
+        <figcaption><span>All eight comparisons — volcanoes (grid)</span><span class="dl">
+          <a class="dl-btn" href="img/rnaseq_vssnap_volcano_grid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/rnaseq_vssnap_volcano_grid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/rnaseq_vssnap_repcorr_grid.png"><img src="img/rnaseq_vssnap_repcorr_grid.png" alt="All eight comparisons — replicate LFC reproducibility (grid)"></a>
+        <figcaption><span>All eight comparisons — replicate LFC reproducibility (grid)</span><span class="dl">
+          <a class="dl-btn" href="img/rnaseq_vssnap_repcorr_grid.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/rnaseq_vssnap_repcorr_grid.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>volcanoes</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/volcano_SNAP_D8_vs_SNAPD4.png"><img src="img/volcano_SNAP_D8_vs_SNAPD4.png" alt="SNAP D8 vs SNAP Day 4"></a>
+        <figcaption><span>SNAP D8 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_SNAP_D8_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_SNAP_D8_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_SNAP_D12_vs_SNAPD4.png"><img src="img/volcano_SNAP_D12_vs_SNAPD4.png" alt="SNAP D12 vs SNAP Day 4"></a>
+        <figcaption><span>SNAP D12 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_SNAP_D12_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_SNAP_D12_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_D4_vs_SNAPD4.png"><img src="img/volcano_CCL13_D4_vs_SNAPD4.png" alt="CCL13 D4 vs SNAP Day 4"></a>
+        <figcaption><span>CCL13 D4 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_D4_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_D4_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_D8_vs_SNAPD4.png"><img src="img/volcano_CCL13_D8_vs_SNAPD4.png" alt="CCL13 D8 vs SNAP Day 4"></a>
+        <figcaption><span>CCL13 D8 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_D8_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_D8_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_CCL13_D12_vs_SNAPD4.png"><img src="img/volcano_CCL13_D12_vs_SNAPD4.png" alt="CCL13 D12 vs SNAP Day 4"></a>
+        <figcaption><span>CCL13 D12 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_CCL13_D12_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_CCL13_D12_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_D4_vs_SNAPD4.png"><img src="img/volcano_IL18_D4_vs_SNAPD4.png" alt="IL18 D4 vs SNAP Day 4"></a>
+        <figcaption><span>IL18 D4 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_D4_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_D4_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_D8_vs_SNAPD4.png"><img src="img/volcano_IL18_D8_vs_SNAPD4.png" alt="IL18 D8 vs SNAP Day 4"></a>
+        <figcaption><span>IL18 D8 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_D8_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_D8_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/volcano_IL18_D12_vs_SNAPD4.png"><img src="img/volcano_IL18_D12_vs_SNAPD4.png" alt="IL18 D12 vs SNAP Day 4"></a>
+        <figcaption><span>IL18 D12 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/volcano_IL18_D12_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/volcano_IL18_D12_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>replicate reproducibility of LFC</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/repcorr_SNAP_D8_vs_SNAPD4.png"><img src="img/repcorr_SNAP_D8_vs_SNAPD4.png" alt="SNAP D8 vs SNAP Day 4"></a>
+        <figcaption><span>SNAP D8 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_SNAP_D8_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_SNAP_D8_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_SNAP_D12_vs_SNAPD4.png"><img src="img/repcorr_SNAP_D12_vs_SNAPD4.png" alt="SNAP D12 vs SNAP Day 4"></a>
+        <figcaption><span>SNAP D12 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_SNAP_D12_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_SNAP_D12_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_D4_vs_SNAPD4.png"><img src="img/repcorr_CCL13_D4_vs_SNAPD4.png" alt="CCL13 D4 vs SNAP Day 4"></a>
+        <figcaption><span>CCL13 D4 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_D4_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_D4_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_D8_vs_SNAPD4.png"><img src="img/repcorr_CCL13_D8_vs_SNAPD4.png" alt="CCL13 D8 vs SNAP Day 4"></a>
+        <figcaption><span>CCL13 D8 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_D8_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_D8_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_CCL13_D12_vs_SNAPD4.png"><img src="img/repcorr_CCL13_D12_vs_SNAPD4.png" alt="CCL13 D12 vs SNAP Day 4"></a>
+        <figcaption><span>CCL13 D12 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_CCL13_D12_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_CCL13_D12_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_D4_vs_SNAPD4.png"><img src="img/repcorr_IL18_D4_vs_SNAPD4.png" alt="IL18 D4 vs SNAP Day 4"></a>
+        <figcaption><span>IL18 D4 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_D4_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_D4_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_D8_vs_SNAPD4.png"><img src="img/repcorr_IL18_D8_vs_SNAPD4.png" alt="IL18 D8 vs SNAP Day 4"></a>
+        <figcaption><span>IL18 D8 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_D8_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_D8_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/repcorr_IL18_D12_vs_SNAPD4.png"><img src="img/repcorr_IL18_D12_vs_SNAPD4.png" alt="IL18 D12 vs SNAP Day 4"></a>
+        <figcaption><span>IL18 D12 vs SNAP Day 4</span><span class="dl">
+          <a class="dl-btn" href="img/repcorr_IL18_D12_vs_SNAPD4.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/repcorr_IL18_D12_vs_SNAPD4.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
+  <h3>GO enrichment (Enrichr; BP / MF / CC 2023, padj&lt;0.05 &amp; |LFC|&ge;2 DEGs)</h3>
+  <div class="grid">
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D8_vs_SNAPD4_up.png"><img src="img/GO_SNAP_D8_vs_SNAPD4_up.png" alt="GO — SNAP D8 vs SNAP D4 (up DEGs)"></a>
+        <figcaption><span>GO — SNAP D8 vs SNAP D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D8_vs_SNAPD4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D8_vs_SNAPD4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D8_vs_SNAPD4_down.png"><img src="img/GO_SNAP_D8_vs_SNAPD4_down.png" alt="GO — SNAP D8 vs SNAP D4 (down DEGs)"></a>
+        <figcaption><span>GO — SNAP D8 vs SNAP D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D8_vs_SNAPD4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D8_vs_SNAPD4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D12_vs_SNAPD4_up.png"><img src="img/GO_SNAP_D12_vs_SNAPD4_up.png" alt="GO — SNAP D12 vs SNAP D4 (up DEGs)"></a>
+        <figcaption><span>GO — SNAP D12 vs SNAP D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D12_vs_SNAPD4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D12_vs_SNAPD4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_SNAP_D12_vs_SNAPD4_down.png"><img src="img/GO_SNAP_D12_vs_SNAPD4_down.png" alt="GO — SNAP D12 vs SNAP D4 (down DEGs)"></a>
+        <figcaption><span>GO — SNAP D12 vs SNAP D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_SNAP_D12_vs_SNAPD4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_SNAP_D12_vs_SNAPD4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D8_vs_SNAPD4_up.png"><img src="img/GO_CCL13_D8_vs_SNAPD4_up.png" alt="GO — CCL13 D8 vs SNAP D4 (up DEGs)"></a>
+        <figcaption><span>GO — CCL13 D8 vs SNAP D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D8_vs_SNAPD4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D8_vs_SNAPD4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D8_vs_SNAPD4_down.png"><img src="img/GO_CCL13_D8_vs_SNAPD4_down.png" alt="GO — CCL13 D8 vs SNAP D4 (down DEGs)"></a>
+        <figcaption><span>GO — CCL13 D8 vs SNAP D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D8_vs_SNAPD4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D8_vs_SNAPD4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D12_vs_SNAPD4_up.png"><img src="img/GO_CCL13_D12_vs_SNAPD4_up.png" alt="GO — CCL13 D12 vs SNAP D4 (up DEGs)"></a>
+        <figcaption><span>GO — CCL13 D12 vs SNAP D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D12_vs_SNAPD4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D12_vs_SNAPD4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_CCL13_D12_vs_SNAPD4_down.png"><img src="img/GO_CCL13_D12_vs_SNAPD4_down.png" alt="GO — CCL13 D12 vs SNAP D4 (down DEGs)"></a>
+        <figcaption><span>GO — CCL13 D12 vs SNAP D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_CCL13_D12_vs_SNAPD4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_CCL13_D12_vs_SNAPD4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D8_vs_SNAPD4_up.png"><img src="img/GO_IL18_D8_vs_SNAPD4_up.png" alt="GO — IL18 D8 vs SNAP D4 (up DEGs)"></a>
+        <figcaption><span>GO — IL18 D8 vs SNAP D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D8_vs_SNAPD4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D8_vs_SNAPD4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D8_vs_SNAPD4_down.png"><img src="img/GO_IL18_D8_vs_SNAPD4_down.png" alt="GO — IL18 D8 vs SNAP D4 (down DEGs)"></a>
+        <figcaption><span>GO — IL18 D8 vs SNAP D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D8_vs_SNAPD4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D8_vs_SNAPD4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D12_vs_SNAPD4_up.png"><img src="img/GO_IL18_D12_vs_SNAPD4_up.png" alt="GO — IL18 D12 vs SNAP D4 (up DEGs)"></a>
+        <figcaption><span>GO — IL18 D12 vs SNAP D4 (up DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D12_vs_SNAPD4_up.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D12_vs_SNAPD4_up.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+      <figure>
+        <a class="img-link" href="img/GO_IL18_D12_vs_SNAPD4_down.png"><img src="img/GO_IL18_D12_vs_SNAPD4_down.png" alt="GO — IL18 D12 vs SNAP D4 (down DEGs)"></a>
+        <figcaption><span>GO — IL18 D12 vs SNAP D4 (down DEGs)</span><span class="dl">
+          <a class="dl-btn" href="img/GO_IL18_D12_vs_SNAPD4_down.png" download>PNG</a>
+          <a class="dl-btn svg" href="img/GO_IL18_D12_vs_SNAPD4_down.svg" download>SVG</a>
+        </span></figcaption>
+      </figure>
+  </div>
 
   <p style="margin-top:3rem; font-size:.85rem; color:var(--muted); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;">
     Source: <code>Fitness_Screen_Analysis/E6_mTeSR_timecourse/</code> ·

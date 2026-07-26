@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="640.79375pt" height="380.5025pt" viewBox="0 0 640.79375 380.5025" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-26T09:34:45.131419</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 380.5025 
+L 640.79375 380.5025 
+L 640.79375 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 267.45375 342.94625 
+L 633.59375 342.94625 
+L 633.59375 21.54625 
+L 267.45375 21.54625 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 267.45375 328.337159 
+L 474.266069 328.337159 
+L 474.266069 308.528222 
+L 267.45375 308.528222 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 267.45375 303.575988 
+L 493.282042 303.575988 
+L 493.282042 283.767051 
+L 267.45375 283.767051 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 267.45375 278.814817 
+L 499.388804 278.814817 
+L 499.388804 259.00588 
+L 267.45375 259.00588 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 267.45375 254.053646 
+L 504.573241 254.053646 
+L 504.573241 234.244709 
+L 267.45375 234.244709 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 267.45375 229.292475 
+L 504.573241 229.292475 
+L 504.573241 209.483538 
+L 267.45375 209.483538 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 267.45375 204.531304 
+L 528.783433 204.531304 
+L 528.783433 184.722367 
+L 267.45375 184.722367 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 267.45375 179.770133 
+L 547.750784 179.770133 
+L 547.750784 159.961196 
+L 267.45375 159.961196 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 267.45375 155.008962 
+L 574.611417 155.008962 
+L 574.611417 135.200025 
+L 267.45375 135.200025 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 267.45375 130.247791 
+L 583.430995 130.247791 
+L 583.430995 110.438854 
+L 267.45375 110.438854 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 267.45375 105.48662 
+L 585.575479 105.48662 
+L 585.575479 85.677683 
+L 267.45375 85.677683 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 267.45375 80.725449 
+L 590.229834 80.725449 
+L 590.229834 60.916512 
+L 267.45375 60.916512 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 267.45375 55.964278 
+L 616.158512 55.964278 
+L 616.158512 36.155341 
+L 267.45375 36.155341 
+z
+" clip-path="url(#pc84b063574)" style="fill: #c1121f; opacity: 0.85"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m7b746d93ad" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m7b746d93ad" x="267.45375" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="267.45375" y="357.544688" transform="rotate(-0 267.45375 357.544688)">0.0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="309.719636" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="309.719636" y="357.544688" transform="rotate(-0 309.719636 357.544688)">0.5</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="351.985522" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="351.985522" y="357.544688" transform="rotate(-0 351.985522 357.544688)">1.0</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="394.251408" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="394.251408" y="357.544688" transform="rotate(-0 394.251408 357.544688)">1.5</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="436.517294" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="436.517294" y="357.544688" transform="rotate(-0 436.517294 357.544688)">2.0</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="478.783179" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="478.783179" y="357.544688" transform="rotate(-0 478.783179 357.544688)">2.5</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="521.049065" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="521.049065" y="357.544688" transform="rotate(-0 521.049065 357.544688)">3.0</text>
+     </g>
+    </g>
+    <g id="xtick_8">
+     <g id="line2d_8">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="563.314951" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_8">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="563.314951" y="357.544688" transform="rotate(-0 563.314951 357.544688)">3.5</text>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m7b746d93ad" x="605.580837" y="342.94625" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="605.580837" y="357.544688" transform="rotate(-0 605.580837 357.544688)">4.0</text>
+     </g>
+    </g>
+    <g id="text_10">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="450.52375" y="371.222812" transform="rotate(-0 450.52375 371.222812)">-log10 adjusted p</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_10">
+      <defs>
+       <path id="m4c8b54dbbe" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="318.432691" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="321.472066" transform="rotate(-0 260.45375 321.472066)">Gamma-Delta T Cell Receptor Complex (GO:0042106)</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="293.67152" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="296.710895" transform="rotate(-0 260.45375 296.710895)">Synapse Organization (GO:0050808)</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="268.910349" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="271.949724" transform="rotate(-0 260.45375 271.949724)">Neuron Projection (GO:0043005)</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="244.149178" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="247.188553" transform="rotate(-0 260.45375 247.188553)">Positive Regulation Of Leukocyte Mediated Cytotoxicity (GO:0</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="219.388007" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="222.427382" transform="rotate(-0 260.45375 222.427382)">Positive Regulation Of Natural Killer Cell Mediated Immunity</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="194.626836" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="197.666211" transform="rotate(-0 260.45375 197.666211)">Calcium Ion Transport (GO:0006816)</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="169.865664" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="172.905039" transform="rotate(-0 260.45375 172.905039)">Dendritic Cell Migration (GO:0036336)</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="145.104493" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="148.143868" transform="rotate(-0 260.45375 148.143868)">Collagen-Containing Extracellular Matrix (GO:0062023)</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="120.343322" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="123.382697" transform="rotate(-0 260.45375 123.382697)">Dendritic Cell Chemotaxis (GO:0002407)</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="95.582151" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="98.621526" transform="rotate(-0 260.45375 98.621526)">Regulation Of Natural Killer Cell Mediated Cytotoxicity (GO:</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_20">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="70.82098" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="73.860355" transform="rotate(-0 260.45375 73.860355)">Calcium Ion Transmembrane Import Into Cytosol (GO:0097553)</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_21">
+      <g>
+       <use xlink:href="#m4c8b54dbbe" x="267.45375" y="46.059809" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_22">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="260.45375" y="49.099184" transform="rotate(-0 260.45375 49.099184)">Voltage-Gated Calcium Channel Complex (GO:0005891)</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_15">
+    <path d="M 267.45375 342.94625 
+L 267.45375 21.54625 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 267.45375 342.94625 
+L 633.59375 342.94625 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_23">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="450.52375" y="15.54625" transform="rotate(-0 450.52375 15.54625)">GO — CCL13_D12_vs_D4 (up DEGs, n=620)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pc84b063574">
+   <rect x="267.45375" y="21.54625" width="366.14" height="321.4"/>
+  </clipPath>
+ </defs>
+</svg>

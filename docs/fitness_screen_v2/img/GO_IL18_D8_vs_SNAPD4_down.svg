@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="640.1525pt" height="380.514531pt" viewBox="0 0 640.1525 380.514531" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ <metadata>
+  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+   <cc:Work>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:date>2026-07-26T09:36:21.382245</dc:date>
+    <dc:format>image/svg+xml</dc:format>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Matplotlib v3.10.0, https://matplotlib.org/</dc:title>
+     </cc:Agent>
+    </dc:creator>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 380.514531 
+L 640.1525 380.514531 
+L 640.1525 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 265.4625 342.958281 
+L 632.9525 342.958281 
+L 632.9525 21.558281 
+L 265.4625 21.558281 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 265.4625 328.34919 
+L 395.29354 328.34919 
+L 395.29354 308.540254 
+L 265.4625 308.540254 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 265.4625 303.588019 
+L 405.708245 303.588019 
+L 405.708245 283.779082 
+L 265.4625 283.779082 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_5">
+    <path d="M 265.4625 278.826848 
+L 411.329429 278.826848 
+L 411.329429 259.017911 
+L 265.4625 259.017911 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 265.4625 254.065677 
+L 421.356286 254.065677 
+L 421.356286 234.25674 
+L 265.4625 234.25674 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 265.4625 229.304506 
+L 433.480613 229.304506 
+L 433.480613 209.495569 
+L 265.4625 209.495569 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_8">
+    <path d="M 265.4625 204.543335 
+L 453.726524 204.543335 
+L 453.726524 184.734398 
+L 265.4625 184.734398 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 265.4625 179.782164 
+L 515.526096 179.782164 
+L 515.526096 159.973227 
+L 265.4625 159.973227 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 265.4625 155.020993 
+L 537.787089 155.020993 
+L 537.787089 135.212056 
+L 265.4625 135.212056 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_11">
+    <path d="M 265.4625 130.259822 
+L 561.513583 130.259822 
+L 561.513583 110.450885 
+L 265.4625 110.450885 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 265.4625 105.498651 
+L 582.162277 105.498651 
+L 582.162277 85.689714 
+L 265.4625 85.689714 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 265.4625 80.73748 
+L 582.1975 80.73748 
+L 582.1975 60.928543 
+L 265.4625 60.928543 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="patch_14">
+    <path d="M 265.4625 55.976309 
+L 615.452976 55.976309 
+L 615.452976 36.167372 
+L 265.4625 36.167372 
+z
+" clip-path="url(#p0393101194)" style="fill: #1d3557; opacity: 0.85"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m81d68a6273" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m81d68a6273" x="265.4625" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="265.4625" y="357.556719" transform="rotate(-0 265.4625 357.556719)">0</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m81d68a6273" x="322.841483" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="322.841483" y="357.556719" transform="rotate(-0 322.841483 357.556719)">5</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m81d68a6273" x="380.220466" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="380.220466" y="357.556719" transform="rotate(-0 380.220466 357.556719)">10</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m81d68a6273" x="437.599449" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="437.599449" y="357.556719" transform="rotate(-0 437.599449 357.556719)">15</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m81d68a6273" x="494.978432" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="494.978432" y="357.556719" transform="rotate(-0 494.978432 357.556719)">20</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m81d68a6273" x="552.357415" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="552.357415" y="357.556719" transform="rotate(-0 552.357415 357.556719)">25</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m81d68a6273" x="609.736398" y="342.958281" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="609.736398" y="357.556719" transform="rotate(-0 609.736398 357.556719)">30</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 10px; font-family: 'DejaVu Sans'; text-anchor: middle" x="449.2075" y="371.234844" transform="rotate(-0 449.2075 371.234844)">-log10 adjusted p</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2">
+    <g id="ytick_1">
+     <g id="line2d_8">
+      <defs>
+       <path id="m65b636350e" d="M 0 0 
+L -3.5 0 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="318.444722" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_9">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="321.484097" transform="rotate(-0 258.4625 321.484097)">Cytokine-Mediated Signaling Pathway (GO:0019221)</text>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_9">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="293.683551" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="296.722926" transform="rotate(-0 258.4625 296.722926)">Cytokine Activity (GO:0005125)</text>
+     </g>
+    </g>
+    <g id="ytick_3">
+     <g id="line2d_10">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="268.92238" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="271.961755" transform="rotate(-0 258.4625 271.961755)">rRNA Metabolic Process (GO:0016072)</text>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_11">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="244.161209" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_12">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="247.200584" transform="rotate(-0 258.4625 247.200584)">Ribosomal Small Subunit Biogenesis (GO:0042274)</text>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_12">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="219.400038" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="222.439413" transform="rotate(-0 258.4625 222.439413)">rRNA Processing (GO:0006364)</text>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_13">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="194.638867" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="197.678242" transform="rotate(-0 258.4625 197.678242)">Small-Subunit Processome (GO:0032040)</text>
+     </g>
+    </g>
+    <g id="ytick_7">
+     <g id="line2d_14">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="169.877696" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="172.917071" transform="rotate(-0 258.4625 172.917071)">Intracellular Non-Membrane-Bounded Organelle (GO:0043232)</text>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_15">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="145.116525" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_16">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="148.1559" transform="rotate(-0 258.4625 148.1559)">Nuclear Lumen (GO:0031981)</text>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_16">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="120.355354" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_17">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="123.394729" transform="rotate(-0 258.4625 123.394729)">Nucleolus (GO:0005730)</text>
+     </g>
+    </g>
+    <g id="ytick_10">
+     <g id="line2d_17">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="95.594183" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_18">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="98.633558" transform="rotate(-0 258.4625 98.633558)">RNA Binding (GO:0003723)</text>
+     </g>
+    </g>
+    <g id="ytick_11">
+     <g id="line2d_18">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="70.833012" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="73.872387" transform="rotate(-0 258.4625 73.872387)">Ribonucleoprotein Complex Biogenesis (GO:0022613)</text>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_19">
+      <g>
+       <use xlink:href="#m65b636350e" x="265.4625" y="46.071841" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <text style="font-size: 8px; font-family: 'DejaVu Sans'; text-anchor: end" x="258.4625" y="49.111216" transform="rotate(-0 258.4625 49.111216)">Ribosome Biogenesis (GO:0042254)</text>
+     </g>
+    </g>
+   </g>
+   <g id="patch_15">
+    <path d="M 265.4625 342.958281 
+L 265.4625 21.558281 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="patch_16">
+    <path d="M 265.4625 342.958281 
+L 632.9525 342.958281 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_21">
+    <text style="font-size: 11px; font-family: 'DejaVu Sans'; text-anchor: middle" x="449.2075" y="15.558281" transform="rotate(-0 449.2075 15.558281)">GO — IL18_D8_vs_SNAPD4 (down DEGs, n=702)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="p0393101194">
+   <rect x="265.4625" y="21.558281" width="367.49" height="321.4"/>
+  </clipPath>
+ </defs>
+</svg>
