@@ -9,6 +9,7 @@ Fitness_Screen_Analysis/
   E6_mTeSR_Timecourse/   iPSC fitness screen, E6 vs mTeSR media over a D4→D7→D9→D14 time course
   Linker_Screen/         iPSC fitness screen comparing NoLinker / 15GS / 30GS / XTEN linkers
   T_Cell_Screen/         primary T-cell fitness screen, Acute stimulation
+Feature_References/      barcode references: MAGeCK library + 10x Cell Ranger feature reference
 Perturb_Seq_Analysis/
   analysis_scripts/      Day 4 and Day 6 Perturb-seq analysis notebooks
 ```
