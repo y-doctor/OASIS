@@ -4,7 +4,7 @@ Pooled OASIS ligandome fitness screen in iPSCs comparing **mTeSR** (complete) an
 
 ## Design
 
-- **Library:** 770 barcoded constructs (521 ligands plus controls). Each barcode is an independent construct.
+- **Library:** 770 barcoded constructs: 764 ligand constructs (one ligand per construct, derived from 515 unique genes of origin) plus 6 control constructs (AMPR, CLUC, GLUC, HALO, mCherry, SNAP). Each barcode is an independent construct.
 - **Samples:** a shared `Day4` baseline, then `{mTeSR, E6}` at `Day7`, `Day9` and `Day14`, with 2 replicates each. The `NGS_plasmid` library pool is included as a reference.
 
 ## Processing

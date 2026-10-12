@@ -17,7 +17,7 @@ Perturb_Seq_Analysis/
 
 Each fitness-screen folder has its own README covering the design, processing and file descriptions, and contains:
 
-- `mageck_count/`: raw MAGeCK per-construct count tables, before and after the CPM filter (E6/mTeSR and Linker screens)
+- `mageck_count/`: raw MAGeCK per-construct count tables (plus CPM-filtered versions for the E6/mTeSR and Linker screens)
 - `mageck_test/`: raw MAGeCK test outputs (`sgrna_summary` / `gene_summary`) for each comparison
 - `lfc_tables/`: raw log2 fold-change tables with z-scored LFC and hit calls, compiled across comparisons
 

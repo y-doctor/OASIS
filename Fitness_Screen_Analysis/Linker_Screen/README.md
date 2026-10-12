@@ -4,7 +4,7 @@ Pooled OASIS ligandome fitness screen in iPSCs that compares linker variants bet
 
 ## Design
 
-- **Library:** 770 barcoded constructs (521 ligands plus controls). Each barcode is an independent construct.
+- **Library:** 770 barcoded constructs: 764 ligand constructs (one ligand per construct, derived from 515 unique genes of origin) plus 6 control constructs (AMPR, CLUC, GLUC, HALO, mCherry, SNAP). Each barcode is an independent construct.
 - **Samples (20):** `Day4` and `Day14` for each linker with 2 replicates, plus one `Plasmid` library pool per linker.
 
 ## Processing
